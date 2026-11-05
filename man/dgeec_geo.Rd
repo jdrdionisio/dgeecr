@@ -10,7 +10,9 @@ dgeec_geo(path = NULL)
 \item{path}{Caminho alternativo para o CSV de ligacao.}
 }
 \value{
-Um \code{tibble} por municipio.
+Um \code{tibble} por municipio, com \code{uls_1}, \code{uls_2}, \code{n_uls},
+\code{uls_todas}, \code{uls_principal} (ULS com mais freguesias), \code{regiao_2024},
+\code{nuts1}, \code{nuts2}, \code{nuts3}, \code{aces_2022}, \code{ars_2022} e \code{freguesias}.
 }
 \description{
 Le o ficheiro de ligacao geografica incluido no pacote

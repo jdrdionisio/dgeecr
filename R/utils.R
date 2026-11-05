@@ -19,8 +19,13 @@
   ListaOrientacao = c("10", "20")
 )
 
+# Etiquetas com acentos, construidas com intToUtf8 (mantem os ficheiros em
+# ASCII puro e evita ambiguidade na edicao).
+.lbl_municipio <- paste0("Munic", intToUtf8(0xED), "pio")   # Municipio
+.lbl_acores    <- paste0("A", intToUtf8(0xE7), "ores")      # Acores
+
 # Primeiro digito do codigo DGEEC de regiao -> NUTS I.
-.dgeec_nuts1 <- c(`1` = "Continente", `2` = "A\u00e7ores", `3` = "Madeira")
+.dgeec_nuts1 <- c(`1` = "Continente", `2` = .lbl_acores, `3` = "Madeira")
 
 # Concatenacao segura (equivalente a `%||%`).
 `%||%` <- function(x, y) if (is.null(x) || length(x) == 0L || all(is.na(x))) y else x

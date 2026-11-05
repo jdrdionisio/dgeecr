@@ -18,6 +18,7 @@ Imports:
     dplyr,
     httr2 (>= 1.0.0),
     nanoparquet,
+    parallel,
     purrr,
     R6,
     readr,

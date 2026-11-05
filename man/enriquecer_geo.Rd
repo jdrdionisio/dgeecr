@@ -18,7 +18,7 @@ enriquecer_geo(dados, geo = NULL)
 }
 \description{
 Liga as linhas de nivel "Municipio" ao ficheiro de ligacao geografica e
-acrescenta \code{uls_1}, \code{uls_2}, \code{regiao_2024}, \code{nuts1}, \code{nuts2}, \code{nuts3},
-\code{aces_2022} e \code{ars_2022}. Municipios com varias ULS (Lisboa, Porto,
-Gondomar, Loures, Funchal) ficam com \code{uls_1} e \code{uls_2} preenchidos.
+acrescenta \code{uls_1}, \code{uls_2}, \code{uls_principal}, \code{n_uls}, \code{regiao_2024},
+\code{nuts1}, \code{nuts2}, \code{nuts3}, \code{aces_2022} e \code{ars_2022}. Municipios com varias
+ULS (Lisboa, Porto, Gondomar, Loures, Funchal) ficam com \code{uls_1}/\code{uls_2}.
 }
