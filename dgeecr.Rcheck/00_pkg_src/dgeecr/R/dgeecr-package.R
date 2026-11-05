@@ -8,4 +8,5 @@
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom R6 R6Class
+#' @importFrom parallel mclapply detectCores
 "_PACKAGE"

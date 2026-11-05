@@ -114,7 +114,7 @@ DgeecClient <- R6Class(
       self$cache_dir    <- cache_dir %||% tools::R_user_dir("dgeecr", which = "cache")
       self$concorrencia <- as.integer(concorrencia)
       self$nucleos      <- nucleos %||%
-        max(1L, parallel::detectCores(logical = TRUE) - 2L)
+        max(1L, detectCores(logical = TRUE) - 2L)
       self$timeout      <- as.integer(timeout)
       self$tentativas   <- as.integer(tentativas)
       self$usar_cache   <- isTRUE(usar_cache)
@@ -221,7 +221,7 @@ DgeecClient <- R6Class(
       }
       idx <- seq_len(nrow(ctx))
       if (self$nucleos > 1L && .Platform$OS.type == "unix") {
-        parallel::mclapply(idx, uma, mc.cores = self$nucleos, mc.preschedule = FALSE)
+        mclapply(idx, uma, mc.cores = self$nucleos, mc.preschedule = FALSE)
       } else {
         lapply(idx, uma)
       }

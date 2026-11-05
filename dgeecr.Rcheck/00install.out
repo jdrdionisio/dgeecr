@@ -9,12 +9,16 @@
   converting help for package ‘dgeecr’
     finding HTML links ... done
     DgeecClient                             html  
+    agregar_regiao_saude                    html  
+    agregar_uls                             html  
     dgeec_dados                             html  
     dgeec_dimensoes                         html  
     dgeec_exportar                          html  
     dgeec_extrair_tudo                      html  
     dgeec_geo                               html  
     dgeec_paginas                           html  
+    dgeec_regioes_saude                     html  
+    dgeec_uls                               html  
     dgeecr-package                          html  
     enriquecer_geo                          html  
 ** building package indices

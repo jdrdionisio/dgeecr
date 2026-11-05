@@ -14,14 +14,14 @@ Description: Cliente R para extrair, em paralelo e com cache em disco, os
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1)
-Imports: dplyr, httr2 (>= 1.0.0), nanoparquet, purrr, R6, readr, rlang,
-        rvest, stringr, tibble, tidyr, writexl, xml2
+Imports: dplyr, httr2 (>= 1.0.0), nanoparquet, parallel, purrr, R6,
+        readr, rlang, rvest, stringr, tibble, tidyr, writexl, xml2
 Suggests: testthat (>= 3.0.0), knitr, rmarkdown
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.1.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2026-11-05 13:37:42 UTC; jdionisio
+Packaged: 2026-11-05 14:45:45 UTC; jdionisio
 Author: DGEEC utilizador [aut, cre]
 Maintainer: DGEEC utilizador <utilizador@example.org>

@@ -19,10 +19,10 @@
     escolha <- as.character(escolha)
     faltam <- setdiff(escolha, disp)
     if (length(faltam))
-      stop(sprintf("C\u00f3digo(s) inv\u00e1lido(s) para %s: %s", d, paste(faltam, collapse = ", ")),
+      stop(sprintf("Codigo(s) invalido(s) para %s: %s", d, paste(faltam, collapse = ", ")),
            call. = FALSE)
     if (length(escolha) == 0)
-      stop(sprintf("Sem c\u00f3digos para %s.", d), call. = FALSE)
+      stop(sprintf("Sem codigos para %s.", d), call. = FALSE)
     lst[[d]] <- escolha
   }
   tidyr::expand_grid(!!!lst)
@@ -41,7 +41,7 @@
   if ("regiao_nome" %in% names(out)) {
     out$regiao_tipo  <- .tipo_regiao(out$regiao_nome)
     out$regiao_nivel <- match(out$regiao_tipo,
-                              c("Portugal", "NUTS I", "NUTS II", "NUTS III", "Munic\u00edpio")) - 1L
+                              c("Portugal", "NUTS I", "NUTS II", "NUTS III", .lbl_municipio)) - 1L
     out$regiao_nome  <- stringr::str_remove(out$regiao_nome, "^NUTS (I|II|III):\\s*") |>
       stringr::str_squish()
   }
@@ -70,8 +70,8 @@
 #' Cliente DGEEC
 #'
 #' Cliente R6 para o portal "Regioes em Numeros - Educacao". Gere a
-#' paralelizacao (httr2), o cache em disco (com resume) e a conversao em
-#' tabela longa.
+#' paralelizacao (httr2 na rede, `parallel` no parsing), o cache em disco
+#' (com resume) e a conversao em tabela longa.
 #'
 #' @export
 #' @examples
@@ -84,31 +84,41 @@ DgeecClient <- R6Class(
   public = list(
     #' @field cache_dir Pasta de cache (NULL = `tools::R_user_dir("dgeecr","cache")`).
     cache_dir = NULL,
-    #' @field concorrencia No de pedidos simultaneos.
+    #' @field concorrencia No de pedidos simultaneos (rede).
     concorrencia = 8L,
+    #' @field nucleos No de processos para o parsing (NULL = todos menos 2).
+    nucleos = NULL,
     #' @field timeout Timeout por pedido (s).
     timeout = 45L,
     #' @field tentativas Tentativas por pedido.
     tentativas = 3L,
     #' @field usar_cache Reutilizar HTML ja descarregado?
     usar_cache = TRUE,
+    #' @field cache_dados Guardar/ler tambem o resultado ja interpretado (RDS)?
+    cache_dados = TRUE,
     #' @field lote No de pedidos por lote.
     lote = 250L,
 
     #' @description Cria um cliente.
     #' @param cache_dir Pasta de cache.
     #' @param concorrencia No de pedidos simultaneos.
+    #' @param nucleos No de processos para o parsing.
     #' @param timeout Timeout por pedido (s).
     #' @param tentativas Tentativas por pedido.
     #' @param usar_cache Reutilizar cache em disco.
+    #' @param cache_dados Guardar/ler o resultado interpretado.
     #' @param lote No de pedidos por lote.
-    initialize = function(cache_dir = NULL, concorrencia = 8L, timeout = 45L,
-                          tentativas = 3L, usar_cache = TRUE, lote = 250L) {
-      self$cache_dir  <- cache_dir %||% tools::R_user_dir("dgeecr", which = "cache")
+    initialize = function(cache_dir = NULL, concorrencia = 8L, nucleos = NULL,
+                          timeout = 45L, tentativas = 3L, usar_cache = TRUE,
+                          cache_dados = TRUE, lote = 250L) {
+      self$cache_dir    <- cache_dir %||% tools::R_user_dir("dgeecr", which = "cache")
       self$concorrencia <- as.integer(concorrencia)
+      self$nucleos      <- nucleos %||%
+        max(1L, detectCores(logical = TRUE) - 2L)
       self$timeout      <- as.integer(timeout)
       self$tentativas   <- as.integer(tentativas)
       self$usar_cache   <- isTRUE(usar_cache)
+      self$cache_dados  <- isTRUE(cache_dados)
       self$lote         <- as.integer(lote)
       dir.create(self$cache_dir, showWarnings = FALSE, recursive = TRUE)
       invisible(self)
@@ -123,16 +133,26 @@ DgeecClient <- R6Class(
 
     #' @description Extrai dados de uma pagina.
     #' @param pagina Id de pagina (ver [dgeec_paginas()]).
-    #' @param regioes Vetor de codigos de regiao (NULL = todas).
+    #' @param regioes Vetor de codigos de regiao DGEEC (NULL = todas).
+    #' @param uls Nome(s) de ULS (ver [dgeec_uls()]) a que restringir a extracao.
+    #' @param regiao_saude Nome(s) de regiao de saude 2024 (ver [dgeec_regioes_saude()]).
     #' @param natureza Codigos de natureza (NULL = desagregado 1/2, ou todos se `incluir_totais`).
     #' @param genero Codigos de genero (NULL = desagregado 1/2, ou todos se `incluir_totais`).
     #' @param orientacao Codigos de orientacao (NULL = desagregado 10/20, ou todos se `incluir_totais`).
     #' @param incluir_totais Incluir tambem os niveis totais (0/...)?
     #' @param progress Mostrar progresso.
     #' @return Um `tibble` longo (1 linha = 1 observacao).
-    dados = function(pagina, regioes = NULL, natureza = NULL, genero = NULL,
-                     orientacao = NULL, incluir_totais = FALSE, progress = TRUE) {
+    dados = function(pagina, regioes = NULL, uls = NULL, regiao_saude = NULL,
+                     natureza = NULL, genero = NULL, orientacao = NULL,
+                     incluir_totais = FALSE, progress = TRUE) {
       meta  <- .dgeec_meta(pagina, timeout = self$timeout, tentativas = self$tentativas)
+
+      if (!is.null(uls) || !is.null(regiao_saude)) {
+        regioes <- .regioes_alvo(meta, dgeec_geo(), uls = uls, regiao_saude = regiao_saude)
+        if (length(regioes) == 0)
+          stop("Nenhum municipio corresponde a ULS/regiao pedida.", call. = FALSE)
+      }
+
       combos <- .construir_combinacoes(meta, regioes, natureza, genero, orientacao,
                                        incluir_totais)
       rot <- .rotular_combos(combos, meta)
@@ -145,32 +165,40 @@ DgeecClient <- R6Class(
           "regiao_tipo", "regiao_nivel")))
       )
 
+      # Cache do resultado ja interpretado (evita reler/parsear HTML).
+      f_dados <- file.path(self$cache_dir, meta$id,
+                           paste0("_dados_", rlang::hash(combos), ".rds"))
+      if (self$usar_cache && self$cache_dados && file.exists(f_dados)) {
+        if (progress) message("  cache de dados: leitura do resultado interpretado.")
+        return(readRDS(f_dados))
+      }
+
       chaves <- purrr::pmap_chr(combos, function(...) {
         codigos <- c(...); .chave_cache(self$cache_dir, meta$id, codigos)
       })
 
-      if (progress) message(sprintf(
-        "[%s] %d combina\u00e7\u00f5es | regi\u00f5es: %d",
-        meta$id, nrow(combos),
-        if ("ListaRegiao" %in% names(combos)) length(unique(combos$ListaRegiao)) else 1L))
+      n_reg <- if ("ListaRegiao" %in% names(combos)) length(unique(combos$ListaRegiao)) else 1L
+      if (progress) message(sprintf("[%s] %d combinacoes | regioes: %d | nucleos: %d",
+                                    meta$id, nrow(combos), n_reg, self$nucleos))
 
       self$.descarregar(meta$path, combos, chaves, progress = progress)
 
-      if (progress) message("  a interpretar respostas...")
-      dados <- vector("list", nrow(ctx))
-      for (i in seq_len(nrow(ctx))) {
-        f <- chaves[i]
-        if (!file.exists(f) || file.info(f)$size < 1) next
-        html <- tryCatch(xml2::read_html(f, encoding = "UTF-8"), error = function(e) NULL)
-        dados[[i]] <- .parse_html(html, ctx[i, , drop = FALSE])
-      }
+      if (progress) message("  a interpretar respostas (paralelo)...")
+      dados <- self$.parsear(chaves, ctx)
+
       dados <- dplyr::bind_rows(dados)
       if (nrow(dados) == 0) return(dados)
 
-      dados |>
+      dados <- dados |>
         dplyr::mutate(pagina = as.character(pagina), grupo = as.character(grupo)) |>
         dplyr::arrange(pagina, dplyr::across(dplyr::any_of(c("regiao_nivel", "regiao_nome"))),
                        categoria_nivel, categoria, ano_letivo)
+
+      if (self$usar_cache && self$cache_dados) {
+        dir.create(dirname(f_dados), showWarnings = FALSE, recursive = TRUE)
+        saveRDS(dados, f_dados)
+      }
+      dados
     },
 
     #' @description Exporta um data frame em CSV/Parquet/XLSX.
@@ -183,6 +211,22 @@ DgeecClient <- R6Class(
       dgeec_exportar(dados, ficheiro, formatos = formatos, limite_xlsx = limite_xlsx)
     },
 
+    # interno: interpreta os HTML do cache, em paralelo
+    .parsear = function(chaves, ctx) {
+      uma <- function(i) {
+        f <- chaves[i]
+        if (!file.exists(f) || file.info(f)$size < 1) return(NULL)
+        html <- tryCatch(xml2::read_html(f, encoding = "UTF-8"), error = function(e) NULL)
+        .parse_html(html, ctx[i, , drop = FALSE])
+      }
+      idx <- seq_len(nrow(ctx))
+      if (self$nucleos > 1L && .Platform$OS.type == "unix") {
+        mclapply(idx, uma, mc.cores = self$nucleos, mc.preschedule = FALSE)
+      } else {
+        lapply(idx, uma)
+      }
+    },
+
     # interno: descarrega o que falta para o cache, em paralelo
     .descarregar = function(path, combos, chaves, progress = TRUE) {
       existe <- file.exists(chaves) & file.info(chaves)$size > 0
@@ -193,7 +237,6 @@ DgeecClient <- R6Class(
         return(invisible(NULL))
       }
       alvo <- if (self$usar_cache) faltam else seq_len(nrow(combos))
-      # garante a pasta
       dir.create(dirname(chaves[1]), showWarnings = FALSE, recursive = TRUE)
 
       lotes <- split(alvo, ceiling(seq_along(alvo) / self$lote))

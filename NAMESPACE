@@ -13,4 +13,8 @@ export(dgeec_regioes_saude)
 export(dgeec_uls)
 export(enriquecer_geo)
 importFrom(R6,R6Class)
+importFrom(parallel,
+  detectCores,
+  mclapply
+)
 importFrom(rlang,.data)

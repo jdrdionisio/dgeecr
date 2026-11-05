@@ -2,11 +2,11 @@
 
 # Resolve o `path` a partir do `id` (aceita tambem o proprio path).
 .resolve_pagina <- function(pagina) {
-  if (length(pagina) != 1L || is.na(pagina)) stop("`pagina` deve ser um \u00fanico id.", call. = FALSE)
+  if (length(pagina) != 1L || is.na(pagina)) stop("`pagina` deve ser um unico id.", call. = FALSE)
   p <- .dgeec_paginas
   if (pagina %in% p$id) return(p[p$id == pagina, , drop = FALSE])
   if (pagina %in% p$path) return(p[p$path == pagina, , drop = FALSE])
-  stop(sprintf("P\u00e1gina desconhecida: '%s'. Ver `dgeec_paginas()`.", pagina), call. = FALSE)
+  stop(sprintf("Pagina desconhecida: '%s'. Ver `dgeec_paginas()`.", pagina), call. = FALSE)
 }
 
 # GET simples com retry.
@@ -52,7 +52,8 @@ dgeec_dimensoes <- function(pagina, timeout = 45L) {
 
   dims <- purrr::map_dfr(nomes_sel, function(nm) {
     op <- rvest::html_elements(html, sprintf("select[name='%s'] option", nm))
-    rotulo_raw <- rvest::html_text2(op)
+    # xml_text preserva os &nbsp; de indentacao (html_text2 colapsa-os).
+    rotulo_raw <- xml2::xml_text(op)
     tibble::tibble(
       select = nm,
       codigo = rvest::html_attr(op, "value"),
@@ -76,10 +77,12 @@ dgeec_dimensoes <- function(pagina, timeout = 45L) {
   )
 }
 
-# Nivel hierarquico a partir do no de &nbsp; a esquerda do rotulo.
+# Nivel hierarquico a partir do no de nbsp a esquerda do rotulo
+# (2 nbsp por nivel: Portugal/NUTS I = 0, NUTS II = 1, NUTS III = 2,
+#  municipio = 3).
 .nivel_regiao <- function(rotulo_raw) {
-  nb <- stringr::str_count(stringr::str_extract(rotulo_raw, "^(?:&nbsp;|\u00a0)*"),
-                           "&nbsp;|\u00a0")
+  esq <- stringr::str_extract(rotulo_raw, paste0("^(?:", .nbsp_char, "| )*"))
+  nb  <- stringr::str_count(esq, .nbsp_char)
   as.integer(nb %/% 2L)
 }
 
@@ -90,6 +93,6 @@ dgeec_dimensoes <- function(pagina, timeout = 45L) {
     stringr::str_starts(nome, "NUTS I:") ~ "NUTS I",
     stringr::str_starts(nome, "NUTS II:") ~ "NUTS II",
     stringr::str_starts(nome, "NUTS III:") ~ "NUTS III",
-    TRUE ~ "Munic\u00edpio"
+    TRUE ~ .lbl_municipio
   )
 }

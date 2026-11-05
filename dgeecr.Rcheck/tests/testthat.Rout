@@ -19,10 +19,10 @@ Type 'q()' to quit R.
 > library(dgeecr)
 > 
 > test_check("dgeecr")
-  -> file22c9fe50f4feb5.csv, file22c9fe50f4feb5.parquet, file22c9fe50f4feb5.xlsx
+  -> file23b8ecee61ba2.csv, file23b8ecee61ba2.parquet, file23b8ecee61ba2.xlsx
   -> 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 26 ]
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 41 ]
 > 
 > proc.time()
    user  system elapsed 
-  1.741   0.116   1.804 
+  2.876   0.195   2.932 

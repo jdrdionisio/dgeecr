@@ -1,4 +1,6 @@
 dgeecr-package	dgeecr-package
+agregar_regiao_saude	agregar_regiao_saude
+agregar_uls	agregar_uls
 DgeecClient	DgeecClient
 dgeecr	dgeecr-package
 dgeec_dados	dgeec_dados
@@ -7,4 +9,6 @@ dgeec_exportar	dgeec_exportar
 dgeec_extrair_tudo	dgeec_extrair_tudo
 dgeec_geo	dgeec_geo
 dgeec_paginas	dgeec_paginas
+dgeec_regioes_saude	dgeec_regioes_saude
+dgeec_uls	dgeec_uls
 enriquecer_geo	enriquecer_geo

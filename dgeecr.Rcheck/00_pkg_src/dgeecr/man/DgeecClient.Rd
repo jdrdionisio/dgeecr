@@ -5,8 +5,8 @@
 \title{Cliente DGEEC}
 \description{
 Cliente R6 para o portal "Regioes em Numeros - Educacao". Gere a
-paralelizacao (httr2), o cache em disco (com resume) e a conversao em
-tabela longa.
+paralelizacao (httr2 na rede, \code{parallel} no parsing), o cache em disco
+(com resume) e a conversao em tabela longa.
 }
 \examples{
 \donttest{
@@ -19,13 +19,17 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
   \describe{
     \item{\code{cache_dir}}{Pasta de cache (NULL = \code{tools::R_user_dir("dgeecr","cache")}).}
 
-    \item{\code{concorrencia}}{No de pedidos simultaneos.}
+    \item{\code{concorrencia}}{No de pedidos simultaneos (rede).}
+
+    \item{\code{nucleos}}{No de processos para o parsing (NULL = todos menos 2).}
 
     \item{\code{timeout}}{Timeout por pedido (s).}
 
     \item{\code{tentativas}}{Tentativas por pedido.}
 
     \item{\code{usar_cache}}{Reutilizar HTML ja descarregado?}
+
+    \item{\code{cache_dados}}{Guardar/ler tambem o resultado ja interpretado (RDS)?}
 
     \item{\code{lote}}{No de pedidos por lote.}
   }
@@ -39,6 +43,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \item \href{#method-DgeecClient-dimensoes}{\code{DgeecClient$dimensoes()}}
     \item \href{#method-DgeecClient-dados}{\code{DgeecClient$dados()}}
     \item \href{#method-DgeecClient-exportar}{\code{DgeecClient$exportar()}}
+    \item \href{#method-DgeecClient-.parsear}{\code{DgeecClient$.parsear()}}
     \item \href{#method-DgeecClient-.descarregar}{\code{DgeecClient$.descarregar()}}
     \item \href{#method-DgeecClient-clone}{\code{DgeecClient$clone()}}
   }
@@ -53,9 +58,11 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \preformatted{DgeecClient$new(
   cache_dir = NULL,
   concorrencia = 8L,
+  nucleos = NULL,
   timeout = 45L,
   tentativas = 3L,
   usar_cache = TRUE,
+  cache_dados = TRUE,
   lote = 250L
 )}
     \if{html}{\out{</div>}}
@@ -65,9 +72,11 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \describe{
       \item{\code{cache_dir}}{Pasta de cache.}
       \item{\code{concorrencia}}{No de pedidos simultaneos.}
+      \item{\code{nucleos}}{No de processos para o parsing.}
       \item{\code{timeout}}{Timeout por pedido (s).}
       \item{\code{tentativas}}{Tentativas por pedido.}
       \item{\code{usar_cache}}{Reutilizar cache em disco.}
+      \item{\code{cache_dados}}{Guardar/ler o resultado interpretado.}
       \item{\code{lote}}{No de pedidos por lote.}
     }
     \if{html}{\out{</div>}}
@@ -115,6 +124,8 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \preformatted{DgeecClient$dados(
   pagina,
   regioes = NULL,
+  uls = NULL,
+  regiao_saude = NULL,
   natureza = NULL,
   genero = NULL,
   orientacao = NULL,
@@ -127,7 +138,9 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{pagina}}{Id de pagina (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
-      \item{\code{regioes}}{Vetor de codigos de regiao (NULL = todas).}
+      \item{\code{regioes}}{Vetor de codigos de regiao DGEEC (NULL = todas).}
+      \item{\code{uls}}{Nome(s) de ULS (ver \code{\link[=dgeec_uls]{dgeec_uls()}}) a que restringir a extracao.}
+      \item{\code{regiao_saude}}{Nome(s) de regiao de saude 2024 (ver \code{\link[=dgeec_regioes_saude]{dgeec_regioes_saude()}}).}
       \item{\code{natureza}}{Codigos de natureza (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
       \item{\code{genero}}{Codigos de genero (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
       \item{\code{orientacao}}{Codigos de orientacao (NULL = desagregado 10/20, ou todos se \code{incluir_totais}).}
@@ -164,6 +177,17 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
       \item{\code{formatos}}{Formatos a escrever.}
       \item{\code{limite_xlsx}}{Maximo de linhas para gerar XLSX (limite do Excel).}
     }
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DgeecClient-.parsear"></a>}}
+\if{latex}{\out{\hypertarget{method-DgeecClient-.parsear}{}}}
+\subsection{\code{DgeecClient$.parsear()}}{
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{DgeecClient$.parsear(chaves, ctx)}
     \if{html}{\out{</div>}}
   }
 }

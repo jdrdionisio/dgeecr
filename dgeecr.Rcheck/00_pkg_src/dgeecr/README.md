@@ -48,7 +48,42 @@ Extrair todas as páginas:
 dgeec_extrair_tudo("output", formatos = c("csv", "parquet"))
 ```
 
+## Pedir dados por ULS ou região de saúde
+
+O portal publica ao nível do município; o `dgeecr` mapeia município → ULS/região
+com o ficheiro de ligação e permite pedir e agregar:
+
+```r
+# catálogos
+dgeec_uls()               # 55 ULS + municípios de cada uma
+dgeec_regioes_saude()     # 7 regiões de saúde 2024
+
+# pedir só os municípios de uma ULS / região
+d <- cli$dados("pre_escolar", uls = "ULS do Alto Minho")
+d <- cli$dados("pre_escolar", regiao_saude = "Norte")
+
+# agregar
+agregar_uls(d)                        # soma por ULS
+agregar_uls(d, multiplas = "duplicar")# municípios repartidos em todas as suas ULS
+agregar_uls(d, multiplas = "maior")   # atribui à ULS com mais freguesias
+agregar_regiao_saude(d)               # soma por região de saúde 2024
+```
+
+Municípios cujo território é repartido por mais de uma ULS (Lisboa, Porto,
+Gondomar, Loures, Funchal) não podem ser somados sem ambiguidade — por omissão
+são **excluídos e listados** no atributo `municipios_excluidos`.
+
+## Desempenho
+
+- **Rede**: `httr2::req_perform_parallel` (curl multi), `concorrencia` configurável.
+- **Parsing em paralelo** (`parallel::mclapply`, fork) — ~6× mais rápido que
+  single-thread; `nucleos` configurável (por omissão, cores − 2).
+- **Cache em dois níveis**: HTML cru **e** resultado já interpretado (RDS) —
+  re-execuções não voltam a descarregar nem a parsear.
+- **Download incremental** por lotes (`lote`): retoma fina em caso de interrupção.
+
 ## Formato da saída
+
 
 Uma linha por observação, com as colunas de contexto (`pagina`, `grupo`,
 `regiao_*`, `natureza_*`, `genero_*`, `orientacao_*`), a dimensão da linha

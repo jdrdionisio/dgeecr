@@ -21,8 +21,8 @@ function processMathHTML() {
 <h3>Description</h3>
 
 <p>Cliente R6 para o portal &quot;Regioes em Numeros - Educacao&quot;. Gere a
-paralelizacao (httr2), o cache em disco (com resume) e a conversao em
-tabela longa.
+paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disco
+(com resume) e a conversao em tabela longa.
 </p>
 
 
@@ -33,13 +33,17 @@ tabela longa.
 <dl>
 <dt><code>cache_dir</code></dt><dd><p>Pasta de cache (NULL = <code>tools::R_user_dir("dgeecr","cache")</code>).</p>
 </dd>
-<dt><code>concorrencia</code></dt><dd><p>No de pedidos simultaneos.</p>
+<dt><code>concorrencia</code></dt><dd><p>No de pedidos simultaneos (rede).</p>
+</dd>
+<dt><code>nucleos</code></dt><dd><p>No de processos para o parsing (NULL = todos menos 2).</p>
 </dd>
 <dt><code>timeout</code></dt><dd><p>Timeout por pedido (s).</p>
 </dd>
 <dt><code>tentativas</code></dt><dd><p>Tentativas por pedido.</p>
 </dd>
 <dt><code>usar_cache</code></dt><dd><p>Reutilizar HTML ja descarregado?</p>
+</dd>
+<dt><code>cache_dados</code></dt><dd><p>Guardar/ler tambem o resultado ja interpretado (RDS)?</p>
 </dd>
 <dt><code>lote</code></dt><dd><p>No de pedidos por lote.</p>
 </dd>
@@ -71,6 +75,9 @@ tabela longa.
 <li> <p><a href="#method-DgeecClient-exportar"><code>DgeecClient$exportar()</code></a>
 </p>
 </li>
+<li> <p><a href="#method-DgeecClient-.parsear"><code>DgeecClient$.parsear()</code></a>
+</p>
+</li>
 <li> <p><a href="#method-DgeecClient-.descarregar"><code>DgeecClient$.descarregar()</code></a>
 </p>
 </li>
@@ -96,9 +103,11 @@ tabela longa.
 <pre>DgeecClient$new(
   cache_dir = NULL,
   concorrencia = 8L,
+  nucleos = NULL,
   timeout = 45L,
   tentativas = 3L,
   usar_cache = TRUE,
+  cache_dados = TRUE,
   lote = 250L
 )</pre>
 </div>
@@ -114,11 +123,15 @@ tabela longa.
 </dd>
 <dt><code>concorrencia</code></dt><dd><p>No de pedidos simultaneos.</p>
 </dd>
+<dt><code>nucleos</code></dt><dd><p>No de processos para o parsing.</p>
+</dd>
 <dt><code>timeout</code></dt><dd><p>Timeout por pedido (s).</p>
 </dd>
 <dt><code>tentativas</code></dt><dd><p>Tentativas por pedido.</p>
 </dd>
 <dt><code>usar_cache</code></dt><dd><p>Reutilizar cache em disco.</p>
+</dd>
+<dt><code>cache_dados</code></dt><dd><p>Guardar/ler o resultado interpretado.</p>
 </dd>
 <dt><code>lote</code></dt><dd><p>No de pedidos por lote.</p>
 </dd>
@@ -193,6 +206,8 @@ tabela longa.
 <pre>DgeecClient$dados(
   pagina,
   regioes = NULL,
+  uls = NULL,
+  regiao_saude = NULL,
   natureza = NULL,
   genero = NULL,
   orientacao = NULL,
@@ -210,7 +225,11 @@ tabela longa.
 <dl>
 <dt><code>pagina</code></dt><dd><p>Id de pagina (ver <code><a href="../../dgeecr/help/dgeec_paginas.html">dgeec_paginas()</a></code>).</p>
 </dd>
-<dt><code>regioes</code></dt><dd><p>Vetor de codigos de regiao (NULL = todas).</p>
+<dt><code>regioes</code></dt><dd><p>Vetor de codigos de regiao DGEEC (NULL = todas).</p>
+</dd>
+<dt><code>uls</code></dt><dd><p>Nome(s) de ULS (ver <code><a href="../../dgeecr/help/dgeec_uls.html">dgeec_uls()</a></code>) a que restringir a extracao.</p>
+</dd>
+<dt><code>regiao_saude</code></dt><dd><p>Nome(s) de regiao de saude 2024 (ver <code><a href="../../dgeecr/help/dgeec_regioes_saude.html">dgeec_regioes_saude()</a></code>).</p>
 </dd>
 <dt><code>natureza</code></dt><dd><p>Codigos de natureza (NULL = desagregado 1/2, ou todos se <code>incluir_totais</code>).</p>
 </dd>
@@ -273,6 +292,22 @@ tabela longa.
 </dd>
 </dl>
 
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-.parsear"></a>
+
+
+
+<h4><code>DgeecClient$.parsear()</code></h4>
+
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$.parsear(chaves, ctx)</pre>
 </div>
 
 

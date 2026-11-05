@@ -1,3 +1,5 @@
+agregar_regiao_saude    Agrega dados ao nivel da regiao de saude 2024
+agregar_uls             Agrega dados ao nivel da ULS
 dgeec_dados             Extrair dados de uma pagina (atalho)
 dgeec_dimensoes         Dimensoes (filtros) de uma pagina
 dgeec_exportar          Exportar dados
@@ -5,6 +7,8 @@ dgeec_extrair_tudo      Extrair e exportar todas as paginas
 dgeec_geo               Tabela de ligacao municipio -> divisoes
                         administrativas e de saude
 dgeec_paginas           Catalogo de paginas disponiveis
+dgeec_regioes_saude     Catalogo de regioes de saude 2024
+dgeec_uls               Catalogo de ULS (2024)
 DgeecClient             Cliente DGEEC
 enriquecer_geo          Enriquece dados DGEEC com divisoes
                         administrativas e de saude
