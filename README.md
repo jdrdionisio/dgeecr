@@ -26,6 +26,15 @@ pedidos. O `dgeecr` trata disso:
 install.packages("dgeecr", repos = NULL, type = "source")
 ```
 
+Versão publicada (v0.1.1):
+
+```r
+install.packages(
+  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.1/dgeecr_0.1.1.tar.gz",
+  repos = NULL, type = "source"
+)
+```
+
 ## Uso rápido
 
 ```r
@@ -34,9 +43,11 @@ library(dgeecr)
 cli <- DgeecClient$new(concorrencia = 8L)
 
 dgeec_paginas()                 # catálogo de tabelas
+dgeec_regioes()                 # regiões: código + nome (340 entradas)
 cli$dimensoes("pre_escolar")    # filtros e respetivos códigos
 
-d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
+# regioes= aceita o NOME (não é preciso saber o código)
+d <- cli$dados("pre_escolar", regioes = c("Portugal", "Monção", "Norte"))
 d <- enriquecer_geo(d)          # + uls_1, uls_2, regiao_2024, nuts*
 
 cli$exportar(d, "output/dgeec_pre_escolar", formatos = c("csv", "parquet", "xlsx"))
@@ -47,6 +58,38 @@ Extrair todas as páginas:
 ```r
 dgeec_extrair_tudo("output", formatos = c("csv", "parquet"))
 ```
+
+## Escolher as regiões por nome
+
+Não é preciso conhecer os códigos internos do portal. `dgeec_regioes()`
+devolve a lista completa (`regiao_codigo`, `regiao_nome`, `regiao_tipo`,
+`regiao_nivel`) — Portugal, NUTS I/II/III e os 308 municípios:
+
+```r
+dgeec_regioes()
+#> # A tibble: 340 × 4
+#>    regiao_codigo regiao_nome                regiao_tipo regiao_nivel
+#>    <chr>         <chr>                      <chr>              <int>
+#>  1 0             Portugal                   Portugal               0
+#>  2 1             Continente                 NUTS I                 0
+#>  ...
+
+dgeec_regioes() |> subset(regiao_tipo == "Município")   # só municípios
+```
+
+Em `regioes=` pode usar o **nome** (ou o código, ou ambos). A comparação ignora
+maiúsculas, acentos e o prefixo `NUTS I/II/III:`, e também aceita
+`"NUTS II: Norte"`:
+
+```r
+cli$dados("pre_escolar", regioes = "Monção")      # nome de município
+cli$dados("pre_escolar", regioes = "Norte")       # NUTS II
+cli$dados("pre_escolar", regioes = "101011604")   # código (continua a funcionar)
+```
+
+Nomes ambíguos (existe mais de um município com o mesmo nome, como *Calheta* nos
+Açores e na Madeira) ou desconhecidos dão erro explícito, com indicação para usar
+o código de `dgeec_regioes()`.
 
 ## Pedir dados por ULS ou região de saúde
 

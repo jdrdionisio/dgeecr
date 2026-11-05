@@ -131,9 +131,15 @@ DgeecClient <- R6Class(
     #' @param pagina Id de pagina.
     dimensoes = function(pagina) dgeec_dimensoes(pagina, timeout = self$timeout),
 
+    #' @description Catalogo de regioes (codigo e nome).
+    #' @param pagina Pagina de onde ler a lista.
+    regioes = function(pagina = "pre_escolar") dgeec_regioes(pagina, timeout = self$timeout),
+
     #' @description Extrai dados de uma pagina.
     #' @param pagina Id de pagina (ver [dgeec_paginas()]).
-    #' @param regioes Vetor de codigos de regiao DGEEC (NULL = todas).
+    #' @param regioes Codigos **ou nomes** de regiao (NULL = todas). Os nomes
+    #'   podem ser de Portugal, NUTS I/II/III ou municipio; ver
+    #'   [dgeec_regioes()]. Ex.: `regioes = c("Portugal", "Moncao")`.
     #' @param uls Nome(s) de ULS (ver [dgeec_uls()]) a que restringir a extracao.
     #' @param regiao_saude Nome(s) de regiao de saude 2024 (ver [dgeec_regioes_saude()]).
     #' @param natureza Codigos de natureza (NULL = desagregado 1/2, ou todos se `incluir_totais`).
@@ -152,6 +158,9 @@ DgeecClient <- R6Class(
         if (length(regioes) == 0)
           stop("Nenhum municipio corresponde a ULS/regiao pedida.", call. = FALSE)
       }
+
+      # aceita nomes (ex. "Moncao", "Norte", "Portugal") ou codigos
+      if (!is.null(regioes)) regioes <- .resolver_regioes(meta, regioes)
 
       combos <- .construir_combinacoes(meta, regioes, natureza, genero, orientacao,
                                        incluir_totais)

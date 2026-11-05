@@ -24,6 +24,7 @@ reference:
     contents:
       - dgeec_paginas
       - dgeec_dimensoes
+      - dgeec_regioes
       - dgeec_dados
       - dgeec_extrair_tudo
   - title: Exportação

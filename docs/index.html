@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">dgeecr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,31 +79,60 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># a partir da pasta local</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dgeecr"</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"source"</span><span class="op">)</span></span></code></pre></div>
+<p>Versão publicada (v0.1.1):</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.1/dgeecr_0.1.1.tar.gz"</span>,</span>
+<span>  repos <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"source"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="uso-rápido">Uso rápido<a class="anchor" aria-label="anchor" href="#uso-r%C3%A1pido"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jdrdionisio.github.io/dgeecr/">dgeecr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cli</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/DgeecClient.html">DgeecClient</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>concorrencia <span class="op">=</span> <span class="fl">8L</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/dgeec_paginas.html">dgeec_paginas</a></span><span class="op">(</span><span class="op">)</span>                 <span class="co"># catálogo de tabelas</span></span>
+<span><span class="fu"><a href="reference/dgeec_regioes.html">dgeec_regioes</a></span><span class="op">(</span><span class="op">)</span>                 <span class="co"># regiões: código + nome (340 entradas)</span></span>
 <span><span class="va">cli</span><span class="op">$</span><span class="fu">dimensoes</span><span class="op">(</span><span class="st">"pre_escolar"</span><span class="op">)</span>    <span class="co"># filtros e respetivos códigos</span></span>
 <span></span>
-<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">cli</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span><span class="st">"pre_escolar"</span>, regioes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"101011604"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># regioes= aceita o NOME (não é preciso saber o código)</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">cli</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span><span class="st">"pre_escolar"</span>, regioes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Portugal"</span>, <span class="st">"Monção"</span>, <span class="st">"Norte"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/enriquecer_geo.html">enriquecer_geo</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>          <span class="co"># + uls_1, uls_2, regiao_2024, nuts*</span></span>
 <span></span>
 <span><span class="va">cli</span><span class="op">$</span><span class="fu">exportar</span><span class="op">(</span><span class="va">d</span>, <span class="st">"output/dgeec_pre_escolar"</span>, formatos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"csv"</span>, <span class="st">"parquet"</span>, <span class="st">"xlsx"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Extrair todas as páginas:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dgeec_extrair_tudo.html">dgeec_extrair_tudo</a></span><span class="op">(</span><span class="st">"output"</span>, formatos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"csv"</span>, <span class="st">"parquet"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="escolher-as-regiões-por-nome">Escolher as regiões por nome<a class="anchor" aria-label="anchor" href="#escolher-as-regi%C3%B5es-por-nome"></a>
+</h2>
+<p>Não é preciso conhecer os códigos internos do portal. <code><a href="reference/dgeec_regioes.html">dgeec_regioes()</a></code> devolve a lista completa (<code>regiao_codigo</code>, <code>regiao_nome</code>, <code>regiao_tipo</code>, <code>regiao_nivel</code>) — Portugal, NUTS I/II/III e os 308 municípios:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dgeec_regioes.html">dgeec_regioes</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 340 × 4</span></span>
+<span><span class="co">#&gt;    regiao_codigo regiao_nome                regiao_tipo regiao_nivel</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;                      &lt;chr&gt;              &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 0             Portugal                   Portugal               0</span></span>
+<span><span class="co">#&gt;  2 1             Continente                 NUTS I                 0</span></span>
+<span><span class="co">#&gt;  ...</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/dgeec_regioes.html">dgeec_regioes</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">regiao_tipo</span> <span class="op">==</span> <span class="st">"Município"</span><span class="op">)</span>   <span class="co"># só municípios</span></span></code></pre></div>
+<p>Em <code>regioes=</code> pode usar o <strong>nome</strong> (ou o código, ou ambos). A comparação ignora maiúsculas, acentos e o prefixo <code>NUTS I/II/III:</code>, e também aceita <code>"NUTS II: Norte"</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cli</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span><span class="st">"pre_escolar"</span>, regioes <span class="op">=</span> <span class="st">"Monção"</span><span class="op">)</span>      <span class="co"># nome de município</span></span>
+<span><span class="va">cli</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span><span class="st">"pre_escolar"</span>, regioes <span class="op">=</span> <span class="st">"Norte"</span><span class="op">)</span>       <span class="co"># NUTS II</span></span>
+<span><span class="va">cli</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span><span class="st">"pre_escolar"</span>, regioes <span class="op">=</span> <span class="st">"101011604"</span><span class="op">)</span>   <span class="co"># código (continua a funcionar)</span></span></code></pre></div>
+<p>Nomes ambíguos (existe mais de um município com o mesmo nome, como <em>Calheta</em> nos Açores e na Madeira) ou desconhecidos dão erro explícito, com indicação para usar o código de <code><a href="reference/dgeec_regioes.html">dgeec_regioes()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="pedir-dados-por-uls-ou-região-de-saúde">Pedir dados por ULS ou região de saúde<a class="anchor" aria-label="anchor" href="#pedir-dados-por-uls-ou-regi%C3%A3o-de-sa%C3%BAde"></a>
 </h2>
 <p>O portal publica ao nível do município; o <code>dgeecr</code> mapeia município → ULS/região com o ficheiro de ligação e permite pedir e agregar:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># catálogos</span></span>
 <span><span class="fu"><a href="reference/dgeec_uls.html">dgeec_uls</a></span><span class="op">(</span><span class="op">)</span>               <span class="co"># 55 ULS + municípios de cada uma</span></span>
 <span><span class="fu"><a href="reference/dgeec_regioes_saude.html">dgeec_regioes_saude</a></span><span class="op">(</span><span class="op">)</span>     <span class="co"># 7 regiões de saúde 2024</span></span>
@@ -164,7 +193,8 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>Apache License (&gt;= 2)</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small>Apache License (&gt;= 2)</small></li>
 </ul>
 </div>
 

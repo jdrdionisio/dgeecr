@@ -15,6 +15,8 @@ Páginas, filtros e extração
   : Catalogo de paginas disponiveis
 - [`dgeec_dimensoes()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_dimensoes.md)
   : Dimensoes (filtros) de uma pagina
+- [`dgeec_regioes()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_regioes.md)
+  : Catalogo de regioes do portal
 - [`dgeec_dados()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_dados.md)
   : Extrair dados de uma pagina (atalho)
 - [`dgeec_extrair_tudo()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_extrair_tudo.md)

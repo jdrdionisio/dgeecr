@@ -48,6 +48,8 @@ paralelizacao (httr2 na rede, `parallel` no parsing), o cache em disco
 
 - [`DgeecClient$dimensoes()`](#method-DgeecClient-dimensoes)
 
+- [`DgeecClient$regioes()`](#method-DgeecClient-regioes)
+
 - [`DgeecClient$dados()`](#method-DgeecClient-dados)
 
 - [`DgeecClient$exportar()`](#method-DgeecClient-exportar)
@@ -143,6 +145,22 @@ Dimensoes (filtros) de uma pagina.
 
 ------------------------------------------------------------------------
 
+### `DgeecClient$regioes()`
+
+Catalogo de regioes (codigo e nome).
+
+#### Usage
+
+    DgeecClient$regioes(pagina = "pre_escolar")
+
+#### Arguments
+
+- `pagina`:
+
+  Pagina de onde ler a lista.
+
+------------------------------------------------------------------------
+
 ### `DgeecClient$dados()`
 
 Extrai dados de uma pagina.
@@ -170,7 +188,10 @@ Extrai dados de uma pagina.
 
 - `regioes`:
 
-  Vetor de codigos de regiao DGEEC (NULL = todas).
+  Codigos **ou nomes** de regiao (NULL = todas). Os nomes podem ser de
+  Portugal, NUTS I/II/III ou municipio; ver
+  [`dgeec_regioes()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_regioes.md).
+  Ex.: `regioes = c("Portugal", "Moncao")`.
 
 - `uls`:
 

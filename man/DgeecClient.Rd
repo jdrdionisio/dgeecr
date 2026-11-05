@@ -41,6 +41,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \item \href{#method-DgeecClient-initialize}{\code{DgeecClient$new()}}
     \item \href{#method-DgeecClient-paginas}{\code{DgeecClient$paginas()}}
     \item \href{#method-DgeecClient-dimensoes}{\code{DgeecClient$dimensoes()}}
+    \item \href{#method-DgeecClient-regioes}{\code{DgeecClient$regioes()}}
     \item \href{#method-DgeecClient-dados}{\code{DgeecClient$dados()}}
     \item \href{#method-DgeecClient-exportar}{\code{DgeecClient$exportar()}}
     \item \href{#method-DgeecClient-tamanho_cache}{\code{DgeecClient$tamanho_cache()}}
@@ -117,6 +118,25 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
 }
 
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DgeecClient-regioes"></a>}}
+\if{latex}{\out{\hypertarget{method-DgeecClient-regioes}{}}}
+\subsection{\code{DgeecClient$regioes()}}{
+  Catalogo de regioes (codigo e nome).
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{DgeecClient$regioes(pagina = "pre_escolar")}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{pagina}}{Pagina de onde ler a lista.}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-DgeecClient-dados"></a>}}
 \if{latex}{\out{\hypertarget{method-DgeecClient-dados}{}}}
 \subsection{\code{DgeecClient$dados()}}{
@@ -140,7 +160,9 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{pagina}}{Id de pagina (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
-      \item{\code{regioes}}{Vetor de codigos de regiao DGEEC (NULL = todas).}
+      \item{\code{regioes}}{Codigos \strong{ou nomes} de regiao (NULL = todas). Os nomes
+podem ser de Portugal, NUTS I/II/III ou municipio; ver
+\code{\link[=dgeec_regioes]{dgeec_regioes()}}. Ex.: \code{regioes = c("Portugal", "Moncao")}.}
       \item{\code{uls}}{Nome(s) de ULS (ver \code{\link[=dgeec_uls]{dgeec_uls()}}) a que restringir a extracao.}
       \item{\code{regiao_saude}}{Nome(s) de regiao de saude 2024 (ver \code{\link[=dgeec_regioes_saude]{dgeec_regioes_saude()}}).}
       \item{\code{natureza}}{Codigos de natureza (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}

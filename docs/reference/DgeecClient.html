@@ -11,7 +11,7 @@ paralelizacao (httr2 na rede, parallel no parsing), o cache em disco
 
     <a class="navbar-brand me-2" href="../index.html">dgeecr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,6 +87,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><ul><li><p><a href="#method-DgeecClient-initialize"><code>DgeecClient$new()</code></a></p></li>
 <li><p><a href="#method-DgeecClient-paginas"><code>DgeecClient$paginas()</code></a></p></li>
 <li><p><a href="#method-DgeecClient-dimensoes"><code>DgeecClient$dimensoes()</code></a></p></li>
+<li><p><a href="#method-DgeecClient-regioes"><code>DgeecClient$regioes()</code></a></p></li>
 <li><p><a href="#method-DgeecClient-dados"><code>DgeecClient$dados()</code></a></p></li>
 <li><p><a href="#method-DgeecClient-exportar"><code>DgeecClient$exportar()</code></a></p></li>
 <li><p><a href="#method-DgeecClient-tamanho_cache"><code>DgeecClient$tamanho_cache()</code></a></p></li>
@@ -165,10 +166,26 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 
 </div>
 
+<p></p><hr><a id="method-DgeecClient-regioes"></a><div class="section">
+<h3 id="dgeecclient-regioes-"><code>DgeecClient$regioes()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-regioes-"></a></h3>
+<p>Catalogo de regioes (codigo e nome).</p><div class="section">
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">regioes</span><span class="op">(</span>pagina <span class="op">=</span> <span class="st">"pre_escolar"</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div><p></p><div class="section">
+<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>pagina</code></dt>
+<dd><p>Pagina de onde ler a lista.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div>
+
 <p></p><hr><a id="method-DgeecClient-dados"></a><div class="section">
 <h3 id="dgeecclient-dados-"><code>DgeecClient$dados()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-dados-"></a></h3>
 <p>Extrai dados de uma pagina.</p><div class="section">
-<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">dados</span><span class="op">(</span></span>
 <span>  <span class="va">pagina</span>,</span>
 <span>  regioes <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -181,12 +198,14 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <span>  progress <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div><p></p><div class="section">
-<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>pagina</code></dt>
 <dd><p>Id de pagina (ver <code><a href="dgeec_paginas.html">dgeec_paginas()</a></code>).</p></dd>
 
       <dt><code>regioes</code></dt>
-<dd><p>Vetor de codigos de regiao DGEEC (NULL = todas).</p></dd>
+<dd><p>Codigos <strong>ou nomes</strong> de regiao (NULL = todas). Os nomes
+podem ser de Portugal, NUTS I/II/III ou municipio; ver
+<code><a href="dgeec_regioes.html">dgeec_regioes()</a></code>. Ex.: <code>regioes = c("Portugal", "Moncao")</code>.</p></dd>
 
       <dt><code>uls</code></dt>
 <dd><p>Nome(s) de ULS (ver <code><a href="dgeec_uls.html">dgeec_uls()</a></code>) a que restringir a extracao.</p></dd>
@@ -221,7 +240,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-exportar"></a><div class="section">
 <h3 id="dgeecclient-exportar-"><code>DgeecClient$exportar()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-exportar-"></a></h3>
 <p>Exporta um data frame em CSV/Parquet/XLSX.</p><div class="section">
-<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
+<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">exportar</span><span class="op">(</span></span>
 <span>  <span class="va">dados</span>,</span>
 <span>  <span class="va">ficheiro</span>,</span>
@@ -229,7 +248,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <span>  limite_xlsx <span class="op">=</span> <span class="fl">1048575L</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div><p></p><div class="section">
-<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>dados</code></dt>
 <dd><p><code>tibble</code> a exportar.</p></dd>
 
@@ -251,7 +270,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-tamanho_cache"></a><div class="section">
 <h3 id="dgeecclient-tamanho-cache-"><code>DgeecClient$tamanho_cache()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-tamanho-cache-"></a></h3>
 <p>Tamanho do cache em disco.</p><div class="section">
-<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
+<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">tamanho_cache</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -260,10 +279,10 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-limpar_cache"></a><div class="section">
 <h3 id="dgeecclient-limpar-cache-"><code>DgeecClient$limpar_cache()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-limpar-cache-"></a></h3>
 <p>Limpa o cache em disco.</p><div class="section">
-<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">limpar_cache</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div><p></p><div class="section">
-<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
 <dd><p>Passado a <code><a href="dgeec_limpar_cache.html">dgeec_limpar_cache()</a></code> (<code>html</code>, <code>dados</code>, <code>confirmar</code>).</p></dd>
 
@@ -276,7 +295,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-.parsear"></a><div class="section">
 <h3 id="dgeecclient-parsear-"><code>DgeecClient$.parsear()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-parsear-"></a></h3>
 <p></p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">.parsear</span><span class="op">(</span><span class="va">chaves</span>, <span class="va">ctx</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -285,7 +304,7 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-.descarregar"></a><div class="section">
 <h3 id="dgeecclient-descarregar-"><code>DgeecClient$.descarregar()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-descarregar-"></a></h3>
 <p></p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">.descarregar</span><span class="op">(</span><span class="va">path</span>, <span class="va">combos</span>, <span class="va">chaves</span>, progress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -294,10 +313,10 @@ paralelizacao (httr2 na rede, <code>parallel</code> no parsing), o cache em disc
 <p></p><hr><a id="method-DgeecClient-clone"></a><div class="section">
 <h3 id="dgeecclient-clone-"><code>DgeecClient$clone()</code><a class="anchor" aria-label="anchor" href="#dgeecclient-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DgeecClient</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div><p></p><div class="section">
-<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
