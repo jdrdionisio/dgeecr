@@ -211,6 +211,13 @@ DgeecClient <- R6Class(
       dgeec_exportar(dados, ficheiro, formatos = formatos, limite_xlsx = limite_xlsx)
     },
 
+    #' @description Tamanho do cache em disco.
+    tamanho_cache = function() dgeec_tamanho_cache(self$cache_dir),
+
+    #' @description Limpa o cache em disco.
+    #' @param ... Passado a [dgeec_limpar_cache()] (`html`, `dados`, `confirmar`).
+    limpar_cache = function(...) dgeec_limpar_cache(self$cache_dir, ...),
+
     # interno: interpreta os HTML do cache, em paralelo
     .parsear = function(chaves, ctx) {
       uma <- function(i) {

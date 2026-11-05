@@ -2,7 +2,7 @@ Package: dgeecr
 Title: Acesso aos Dados de "Regiões em Números - Educação" (DGEEC)
 Version: 0.1.0
 Authors@R:
-    person("DGEEC", "utilizador", email = "utilizador@example.org", role = c("aut", "cre"))
+    person("João Dionísio", email = "joaodrdionisio@gmail.com", role = c("aut", "cre"))
 Description: Cliente R para extrair, em paralelo e com cache em disco, os
     dados do portal "Regiões em Números - Educação" da Direção-Geral de
     Estatísticas da Educação e Ciência (DGEEC). Cada página do portal é um
@@ -11,7 +11,9 @@ Description: Cliente R para extrair, em paralelo e com cache em disco, os
     (1 linha = 1 observação) com rvest/dplyr/tidyr e os resultados podem ser
     enriquecidos com divisões administrativas e de saúde (ULS, NUTS, região
     2024) a partir de um ficheiro de ligação geográfica incluído no pacote.
-License: MIT + file LICENSE
+License: Apache License (>= 2)
+URL: https://jdrdionisio.github.io/dgeecr/, https://github.com/jdrdionisio/dgeecr
+BugReports: https://github.com/jdrdionisio/dgeecr/issues
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:

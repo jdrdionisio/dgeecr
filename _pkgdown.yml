@@ -1,0 +1,51 @@
+url: https://jdrdionisio.github.io/dgeecr/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#60497A"
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/jdrdionisio/dgeecr
+
+reference:
+  - title: Cliente
+    desc: Cliente R6 para o portal
+    contents:
+      - DgeecClient
+  - title: Extração
+    desc: Páginas, filtros e extração
+    contents:
+      - dgeec_paginas
+      - dgeec_dimensoes
+      - dgeec_dados
+      - dgeec_extrair_tudo
+  - title: Exportação
+    contents:
+      - dgeec_exportar
+  - title: Geografia (ULS, NUTS, região de saúde)
+    desc: Ligações a divisões administrativas e de saúde
+    contents:
+      - dgeec_geo
+      - dgeec_uls
+      - dgeec_regioes_saude
+      - enriquecer_geo
+      - agregar_uls
+      - agregar_regiao_saude
+  - title: Cache
+    contents:
+      - dgeec_cache_dir
+      - dgeec_tamanho_cache
+      - dgeec_limpar_cache
+
+articles:
+  - title: Guias
+    navbar: ~
+    contents:
+      - dgeecr

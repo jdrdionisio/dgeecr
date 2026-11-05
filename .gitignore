@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 *.tar.gz
+*.Rcheck/
 inst/doc
 output/
 .dgeec_cache/
+logo_preview.png

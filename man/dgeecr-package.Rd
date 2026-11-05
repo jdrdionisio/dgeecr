@@ -11,12 +11,21 @@ Cliente R para extrair os dados do portal
 e com cache em disco, devolvendo tabelas longas (1 linha = 1 observacao) e
 permitindo enriquecimento geografico (ULS, NUTS, regiao 2024).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://jdrdionisio.github.io/dgeecr/}
+  \item \url{https://github.com/jdrdionisio/dgeecr}
+  \item Report bugs at \url{https://github.com/jdrdionisio/dgeecr/issues}
+}
+
+}
 \author{
-\strong{Maintainer}: DGEEC utilizador \email{utilizador@example.org}
+\strong{Maintainer}: João Dionísio \email{joaodrdionisio@gmail.com}
 
 Authors:
 \itemize{
-  \item DGEEC utilizador \email{utilizador@example.org}
+  \item João Dionísio \email{joaodrdionisio@gmail.com}
 }
 
 }

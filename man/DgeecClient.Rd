@@ -43,6 +43,8 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \item \href{#method-DgeecClient-dimensoes}{\code{DgeecClient$dimensoes()}}
     \item \href{#method-DgeecClient-dados}{\code{DgeecClient$dados()}}
     \item \href{#method-DgeecClient-exportar}{\code{DgeecClient$exportar()}}
+    \item \href{#method-DgeecClient-tamanho_cache}{\code{DgeecClient$tamanho_cache()}}
+    \item \href{#method-DgeecClient-limpar_cache}{\code{DgeecClient$limpar_cache()}}
     \item \href{#method-DgeecClient-.parsear}{\code{DgeecClient$.parsear()}}
     \item \href{#method-DgeecClient-.descarregar}{\code{DgeecClient$.descarregar()}}
     \item \href{#method-DgeecClient-clone}{\code{DgeecClient$clone()}}
@@ -176,6 +178,37 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
       \item{\code{ficheiro}}{Caminho base (sem extensao).}
       \item{\code{formatos}}{Formatos a escrever.}
       \item{\code{limite_xlsx}}{Maximo de linhas para gerar XLSX (limite do Excel).}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DgeecClient-tamanho_cache"></a>}}
+\if{latex}{\out{\hypertarget{method-DgeecClient-tamanho_cache}{}}}
+\subsection{\code{DgeecClient$tamanho_cache()}}{
+  Tamanho do cache em disco.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{DgeecClient$tamanho_cache()}
+    \if{html}{\out{</div>}}
+  }
+}
+
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-DgeecClient-limpar_cache"></a>}}
+\if{latex}{\out{\hypertarget{method-DgeecClient-limpar_cache}{}}}
+\subsection{\code{DgeecClient$limpar_cache()}}{
+  Limpa o cache em disco.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{DgeecClient$limpar_cache(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{Passado a \code{\link[=dgeec_limpar_cache]{dgeec_limpar_cache()}} (\code{html}, \code{dados}, \code{confirmar}).}
     }
     \if{html}{\out{</div>}}
   }
