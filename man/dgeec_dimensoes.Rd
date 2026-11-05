@@ -2,12 +2,12 @@
 % Please edit documentation in R/dimensoes.R
 \name{dgeec_dimensoes}
 \alias{dgeec_dimensoes}
-\title{Dimensões (filtros) de uma página}
+\title{Dimensoes (filtros) de uma pagina}
 \usage{
 dgeec_dimensoes(pagina, timeout = 45L)
 }
 \arguments{
-\item{pagina}{Id de página (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}) ou o respetivo \code{path}.}
+\item{pagina}{Id de pagina (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}) ou o respetivo \code{path}.}
 
 \item{timeout}{Timeout por pedido, em segundos.}
 }
@@ -15,8 +15,8 @@ dgeec_dimensoes(pagina, timeout = 45L)
 Um \code{tibble} com \code{select}, \code{codigo}, \code{rotulo} e \code{nivel}.
 }
 \description{
-Lê a página do portal e devolve os valores possíveis de cada \verb{<select>},
-com o respetivo nível hierárquico (no caso das regiões).
+Le a pagina do portal e devolve os valores possiveis de cada \verb{<select>},
+com o respetivo nivel hierarquico (no caso das regioes).
 }
 \examples{
 \donttest{

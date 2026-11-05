@@ -1,10 +1,10 @@
-# Conveniência (API funcional) ------------------------------------------
+# Conveniencia (API funcional) ------------------------------------------
 
-#' Extrair dados de uma página (atalho)
+#' Extrair dados de uma pagina (atalho)
 #'
-#' Cria um [DgeecClient] e extrai os dados de uma página.
+#' Cria um [DgeecClient] e extrai os dados de uma pagina.
 #'
-#' @param pagina Id de página (ver [dgeec_paginas()]).
+#' @param pagina Id de pagina (ver [dgeec_paginas()]).
 #' @param ... Argumentos passados a `DgeecClient$dados()` (p.ex. `regioes`,
 #'   `natureza`, `incluir_totais`).
 #' @param cliente Um [DgeecClient] opcional.

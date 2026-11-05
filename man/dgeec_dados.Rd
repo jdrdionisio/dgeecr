@@ -2,12 +2,12 @@
 % Please edit documentation in R/dados.R
 \name{dgeec_dados}
 \alias{dgeec_dados}
-\title{Extrair dados de uma página (atalho)}
+\title{Extrair dados de uma pagina (atalho)}
 \usage{
 dgeec_dados(pagina, ..., cliente = NULL)
 }
 \arguments{
-\item{pagina}{Id de página (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
+\item{pagina}{Id de pagina (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
 
 \item{...}{Argumentos passados a \code{DgeecClient$dados()} (p.ex. \code{regioes},
 \code{natureza}, \code{incluir_totais}).}
@@ -18,7 +18,7 @@ dgeec_dados(pagina, ..., cliente = NULL)
 Um \code{tibble} longo.
 }
 \description{
-Cria um \link{DgeecClient} e extrai os dados de uma página.
+Cria um \link{DgeecClient} e extrai os dados de uma pagina.
 }
 \examples{
 \donttest{

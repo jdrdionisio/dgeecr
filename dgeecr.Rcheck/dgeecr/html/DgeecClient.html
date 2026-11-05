@@ -1,0 +1,339 @@
+<!DOCTYPE html><html><head><title>R: Cliente DGEEC</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>DgeecClient {dgeecr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Cliente DGEEC</h2>
+
+<h3>Description</h3>
+
+<p>Cliente R6 para o portal &quot;Regioes em Numeros - Educacao&quot;. Gere a
+paralelizacao (httr2), o cache em disco (com resume) e a conversao em
+tabela longa.
+</p>
+
+
+<h3>Public fields</h3>
+
+<div class="r6-fields">
+
+<dl>
+<dt><code>cache_dir</code></dt><dd><p>Pasta de cache (NULL = <code>tools::R_user_dir("dgeecr","cache")</code>).</p>
+</dd>
+<dt><code>concorrencia</code></dt><dd><p>No de pedidos simultaneos.</p>
+</dd>
+<dt><code>timeout</code></dt><dd><p>Timeout por pedido (s).</p>
+</dd>
+<dt><code>tentativas</code></dt><dd><p>Tentativas por pedido.</p>
+</dd>
+<dt><code>usar_cache</code></dt><dd><p>Reutilizar HTML ja descarregado?</p>
+</dd>
+<dt><code>lote</code></dt><dd><p>No de pedidos por lote.</p>
+</dd>
+</dl>
+
+</div>
+
+
+<h3>Methods</h3>
+
+
+
+<h4>Public methods</h4>
+
+
+<ul>
+<li> <p><a href="#method-DgeecClient-initialize"><code>DgeecClient$new()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-paginas"><code>DgeecClient$paginas()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-dimensoes"><code>DgeecClient$dimensoes()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-dados"><code>DgeecClient$dados()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-exportar"><code>DgeecClient$exportar()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-.descarregar"><code>DgeecClient$.descarregar()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-DgeecClient-clone"><code>DgeecClient$clone()</code></a>
+</p>
+</li></ul>
+
+
+<hr>
+<a id="method-DgeecClient-initialize"></a>
+
+
+
+<h4><code>DgeecClient$new()</code></h4>
+
+<p>Cria um cliente.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$new(
+  cache_dir = NULL,
+  concorrencia = 8L,
+  timeout = 45L,
+  tentativas = 3L,
+  usar_cache = TRUE,
+  lote = 250L
+)</pre>
+</div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>cache_dir</code></dt><dd><p>Pasta de cache.</p>
+</dd>
+<dt><code>concorrencia</code></dt><dd><p>No de pedidos simultaneos.</p>
+</dd>
+<dt><code>timeout</code></dt><dd><p>Timeout por pedido (s).</p>
+</dd>
+<dt><code>tentativas</code></dt><dd><p>Tentativas por pedido.</p>
+</dd>
+<dt><code>usar_cache</code></dt><dd><p>Reutilizar cache em disco.</p>
+</dd>
+<dt><code>lote</code></dt><dd><p>No de pedidos por lote.</p>
+</dd>
+</dl>
+
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-paginas"></a>
+
+
+
+<h4><code>DgeecClient$paginas()</code></h4>
+
+<p>Catalogo de paginas.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$paginas()</pre>
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-dimensoes"></a>
+
+
+
+<h4><code>DgeecClient$dimensoes()</code></h4>
+
+<p>Dimensoes (filtros) de uma pagina.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$dimensoes(pagina)</pre>
+</div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>pagina</code></dt><dd><p>Id de pagina.</p>
+</dd>
+</dl>
+
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-dados"></a>
+
+
+
+<h4><code>DgeecClient$dados()</code></h4>
+
+<p>Extrai dados de uma pagina.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$dados(
+  pagina,
+  regioes = NULL,
+  natureza = NULL,
+  genero = NULL,
+  orientacao = NULL,
+  incluir_totais = FALSE,
+  progress = TRUE
+)</pre>
+</div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>pagina</code></dt><dd><p>Id de pagina (ver <code><a href="../../dgeecr/help/dgeec_paginas.html">dgeec_paginas()</a></code>).</p>
+</dd>
+<dt><code>regioes</code></dt><dd><p>Vetor de codigos de regiao (NULL = todas).</p>
+</dd>
+<dt><code>natureza</code></dt><dd><p>Codigos de natureza (NULL = desagregado 1/2, ou todos se <code>incluir_totais</code>).</p>
+</dd>
+<dt><code>genero</code></dt><dd><p>Codigos de genero (NULL = desagregado 1/2, ou todos se <code>incluir_totais</code>).</p>
+</dd>
+<dt><code>orientacao</code></dt><dd><p>Codigos de orientacao (NULL = desagregado 10/20, ou todos se <code>incluir_totais</code>).</p>
+</dd>
+<dt><code>incluir_totais</code></dt><dd><p>Incluir tambem os niveis totais (0/...)?</p>
+</dd>
+<dt><code>progress</code></dt><dd><p>Mostrar progresso.</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p>Um <code>tibble</code> longo (1 linha = 1 observacao).
+</p>
+
+
+<hr>
+<a id="method-DgeecClient-exportar"></a>
+
+
+
+<h4><code>DgeecClient$exportar()</code></h4>
+
+<p>Exporta um data frame em CSV/Parquet/XLSX.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$exportar(
+  dados,
+  ficheiro,
+  formatos = c("csv", "parquet", "xlsx"),
+  limite_xlsx = 1048575L
+)</pre>
+</div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>dados</code></dt><dd><p><code>tibble</code> a exportar.</p>
+</dd>
+<dt><code>ficheiro</code></dt><dd><p>Caminho base (sem extensao).</p>
+</dd>
+<dt><code>formatos</code></dt><dd><p>Formatos a escrever.</p>
+</dd>
+<dt><code>limite_xlsx</code></dt><dd><p>Maximo de linhas para gerar XLSX (limite do Excel).</p>
+</dd>
+</dl>
+
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-.descarregar"></a>
+
+
+
+<h4><code>DgeecClient$.descarregar()</code></h4>
+
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$.descarregar(path, combos, chaves, progress = TRUE)</pre>
+</div>
+
+
+<hr>
+<a id="method-DgeecClient-clone"></a>
+
+
+
+<h4><code>DgeecClient$clone()</code></h4>
+
+<p>The objects of this class are cloneable with this method.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r">
+<pre>DgeecClient$clone(deep = FALSE)</pre>
+</div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+cli &lt;- DgeecClient$new()
+d &lt;- cli$dados("pre_escolar", regioes = c("0", "101011604"))
+
+</code></pre>
+
+<hr><div style="text-align: center;">[Package <em>dgeecr</em> version 0.1.0 <a href="00Index.html">Index</a>]</div></main>
+
+</div>
+</body></html>

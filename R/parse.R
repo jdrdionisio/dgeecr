@@ -1,12 +1,12 @@
 # Parsing do HTML -> tabela longa ---------------------------------------
 
-# Normaliza espaços, trocando &nbsp; por espaço.
+# Normaliza espacos, trocando &nbsp; por espaco.
 .norm_txt <- function(x) {
   x <- stringr::str_replace_all(x, "\u00a0", " ")
   stringr::str_squish(x)
 }
 
-# "8 786" / "259 850" / "90.6" -> número (milhares separados por espaço).
+# "8 786" / "259 850" / "90.6" -> numero (milhares separados por espaco).
 .para_num <- function(x) {
   x <- stringr::str_remove_all(x, "[\u00a0 ]")
   x <- dplyr::na_if(x, "")
@@ -15,7 +15,7 @@
 
 # Converte um documento HTML (xml_document ou bytes) num tibble longo:
 #   dimensao | categoria_nivel | categoria | ano_letivo | valor
-# `ctx` é um data.frame de 1 linha com os códigos/rótulos do pedido.
+# `ctx` e um data.frame de 1 linha com os codigos/rotulos do pedido.
 .parse_html <- function(html, ctx) {
   if (is.null(html)) return(NULL)
   if (is.raw(html) || is.character(html))
@@ -35,10 +35,10 @@
     colspan <- rvest::html_attr(cells[[1]], "colspan")
     classe1 <- rvest::html_attr(cells[[1]], "class") %||% ""
 
-    # (a) linha de secção (célula única com colspan)
+    # (a) linha de seccao (celula unica com colspan)
     if (!is.na(colspan) && length(cells) == 1) { secao <- txt[1]; next }
 
-    # (b) cabeçalho com os anos letivos
+    # (b) cabecalho com os anos letivos
     if (all(rvest::html_name(cells) == "th") &&
         any(stringr::str_detect(txt, "^\\d{4}/\\d{2}$"))) {
       anos <- txt[stringr::str_detect(txt, "^\\d{4}/\\d{2}$")]
@@ -49,7 +49,7 @@
       next
     }
 
-    # (c) linha de dados (1.ª célula com classe tdn*)
+    # (c) linha de dados (1.a celula com classe tdn*)
     if (!stringr::str_detect(classe1, "tdn")) next
 
     rotulo_raw <- xml2::xml_text(cells[[1]])          # preserva &nbsp;

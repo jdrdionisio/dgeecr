@@ -1,0 +1,25 @@
+* installing *source* package ‘dgeecr’ ...
+** this is package ‘dgeecr’ version ‘0.1.0’
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package ‘dgeecr’
+    finding HTML links ... done
+    DgeecClient                             html  
+    dgeec_dados                             html  
+    dgeec_dimensoes                         html  
+    dgeec_exportar                          html  
+    dgeec_extrair_tudo                      html  
+    dgeec_geo                               html  
+    dgeec_paginas                           html  
+    dgeecr-package                          html  
+    enriquecer_geo                          html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dgeecr)

@@ -1,6 +1,6 @@
-# Enriquecimento geográfico (ULS, NUTS, região 2024) --------------------
+# Enriquecimento geografico (ULS, NUTS, regiao 2024) --------------------
 
-# Normaliza o nome do município para ligação (minúsculas, sem qualificadores).
+# Normaliza o nome do municipio para ligacao (minusculas, sem qualificadores).
 .norm_mun <- function(x) {
   x <- stringr::str_to_lower(x)
   x <- stringr::str_remove_all(x, "\\([^)]*\\)")   # remove "(...)"
@@ -8,20 +8,20 @@
   stringr::str_squish(x)
 }
 
-#' Tabela de ligação município -> divisões administrativas e de saúde
+#' Tabela de ligacao municipio -> divisoes administrativas e de saude
 #'
-#' Lê o ficheiro de ligação geográfica incluído no pacote
-#' (`inst/extdata/geo_linkage_2024_v8.csv`) e agrega-o ao nível do município,
-#' resolvendo as ULS que dividem um município ao nível da freguesia em
+#' Le o ficheiro de ligacao geografica incluido no pacote
+#' (`inst/extdata/geo_linkage_2024_v8.csv`) e agrega-o ao nivel do municipio,
+#' resolvendo as ULS que dividem um municipio ao nivel da freguesia em
 #' `uls_1` e `uls_2`.
 #'
-#' @param path Caminho alternativo para o CSV de ligação.
-#' @return Um `tibble` por município.
+#' @param path Caminho alternativo para o CSV de ligacao.
+#' @return Um `tibble` por municipio.
 #' @export
 dgeec_geo <- function(path = NULL) {
   path <- path %||% system.file("extdata", "geo_linkage_2024_v8.csv", package = "dgeecr")
   if (!nzchar(path) || !file.exists(path))
-    stop("Ficheiro de ligação geográfica não encontrado.", call. = FALSE)
+    stop("Ficheiro de liga\u00e7\u00e3o geogr\u00e1fica n\u00e3o encontrado.", call. = FALSE)
 
   geo <- readr::read_delim(path, delim = ";", show_col_types = FALSE,
                            locale = readr::locale(encoding = "UTF-8"))
@@ -58,26 +58,26 @@ dgeec_geo <- function(path = NULL) {
     dplyr::select(-"uls")
 }
 
-#' Enriquece dados DGEEC com divisões administrativas e de saúde
+#' Enriquece dados DGEEC com divisoes administrativas e de saude
 #'
-#' Liga as linhas de nível "Município" ao ficheiro de ligação geográfica e
+#' Liga as linhas de nivel "Municipio" ao ficheiro de ligacao geografica e
 #' acrescenta `uls_1`, `uls_2`, `regiao_2024`, `nuts1`, `nuts2`, `nuts3`,
-#' `aces_2022` e `ars_2022`. Municípios com várias ULS (Lisboa, Porto,
+#' `aces_2022` e `ars_2022`. Municipios com varias ULS (Lisboa, Porto,
 #' Gondomar, Loures, Funchal) ficam com `uls_1` e `uls_2` preenchidos.
 #'
 #' @param dados Um `tibble` produzido por [DgeecClient]`$dados()` /
 #'   [dgeec_dados()], com as colunas `regiao_codigo`, `regiao_nome` e
 #'   `regiao_tipo`.
-#' @param geo Tabela de ligação (por omissão [dgeec_geo()]).
-#' @return `dados` com as colunas geográficas acrescentadas.
+#' @param geo Tabela de ligacao (por omissao [dgeec_geo()]).
+#' @return `dados` com as colunas geograficas acrescentadas.
 #' @export
 enriquecer_geo <- function(dados, geo = NULL) {
   geo <- geo %||% dgeec_geo()
   if (!all(c("regiao_codigo", "regiao_nome", "regiao_tipo") %in% names(dados)))
-    stop("`dados` não tem as colunas de região esperadas.", call. = FALSE)
+    stop("`dados` n\u00e3o tem as colunas de regi\u00e3o esperadas.", call. = FALSE)
 
   chave <- dplyr::tibble(
-    .mun   = ifelse(dados$regiao_tipo == "Município", .norm_mun(dados$regiao_nome), NA_character_),
+    .mun   = ifelse(dados$regiao_tipo == "Munic\u00edpio", .norm_mun(dados$regiao_nome), NA_character_),
     .nuts1 = unname(.dgeec_nuts1[substr(dados$regiao_codigo, 1, 1)])
   )
 

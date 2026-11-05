@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalogo.R
 \name{dgeec_paginas}
 \alias{dgeec_paginas}
-\title{Catálogo de páginas disponíveis}
+\title{Catalogo de paginas disponiveis}
 \usage{
 dgeec_paginas()
 }
@@ -10,7 +10,7 @@ dgeec_paginas()
 Um \code{tibble} com as colunas \code{id}, \code{grupo}, \code{path} e \code{descricao}.
 }
 \description{
-Devolve o conjunto de páginas (tabelas) publicadas no portal.
+Devolve o conjunto de paginas (tabelas) publicadas no portal.
 }
 \examples{
 dgeec_paginas()

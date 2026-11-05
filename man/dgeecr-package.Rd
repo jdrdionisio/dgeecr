@@ -4,12 +4,12 @@
 \name{dgeecr-package}
 \alias{dgeecr}
 \alias{dgeecr-package}
-\title{dgeecr: dados de "Regiões em Números - Educação" (DGEEC)}
+\title{dgeecr: dados de "Regioes em Numeros - Educacao" (DGEEC)}
 \description{
 Cliente R para extrair os dados do portal
 \url{https://estatisticas-educacao.dgeec.medu.pt/regioesemnumeros/}, em paralelo
-e com cache em disco, devolvendo tabelas longas (1 linha = 1 observação) e
-permitindo enriquecimento geográfico (ULS, NUTS, região 2024).
+e com cache em disco, devolvendo tabelas longas (1 linha = 1 observacao) e
+permitindo enriquecimento geografico (ULS, NUTS, regiao 2024).
 }
 \author{
 \strong{Maintainer}: DGEEC utilizador \email{utilizador@example.org}

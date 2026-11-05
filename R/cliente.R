@@ -1,6 +1,6 @@
 # Cliente principal -----------------------------------------------------
 
-# Constrói as combinações de códigos a pedir para uma página.
+# Constroi as combinacoes de codigos a pedir para uma pagina.
 .construir_combinacoes <- function(meta, regioes = NULL, natureza = NULL,
                                    genero = NULL, orientacao = NULL,
                                    incluir_totais = FALSE) {
@@ -19,16 +19,16 @@
     escolha <- as.character(escolha)
     faltam <- setdiff(escolha, disp)
     if (length(faltam))
-      stop(sprintf("Código(s) inválido(s) para %s: %s", d, paste(faltam, collapse = ", ")),
+      stop(sprintf("C\u00f3digo(s) inv\u00e1lido(s) para %s: %s", d, paste(faltam, collapse = ", ")),
            call. = FALSE)
     if (length(escolha) == 0)
-      stop(sprintf("Sem códigos para %s.", d), call. = FALSE)
+      stop(sprintf("Sem c\u00f3digos para %s.", d), call. = FALSE)
     lst[[d]] <- escolha
   }
   tidyr::expand_grid(!!!lst)
 }
 
-# Junta rótulos e deriva tipo/nível da região.
+# Junta rotulos e deriva tipo/nivel da regiao.
 .rotular_combos <- function(combos, meta) {
   out <- combos
   for (d in names(.dgeec_dimensoes)) {
@@ -41,21 +41,21 @@
   if ("regiao_nome" %in% names(out)) {
     out$regiao_tipo  <- .tipo_regiao(out$regiao_nome)
     out$regiao_nivel <- match(out$regiao_tipo,
-                              c("Portugal", "NUTS I", "NUTS II", "NUTS III", "Município")) - 1L
+                              c("Portugal", "NUTS I", "NUTS II", "NUTS III", "Munic\u00edpio")) - 1L
     out$regiao_nome  <- stringr::str_remove(out$regiao_nome, "^NUTS (I|II|III):\\s*") |>
       stringr::str_squish()
   }
   out
 }
 
-# Chave de cache (ficheiro) para uma combinação.
+# Chave de cache (ficheiro) para uma combinacao.
 .chave_cache <- function(cache_dir, pagina, codigos) {
   file.path(cache_dir, pagina,
             paste(sprintf("%s-%s", names(codigos), unlist(codigos)), collapse = "_")) |>
     paste0(".html")
 }
 
-# Um pedido POST para o formulário da página.
+# Um pedido POST para o formulario da pagina.
 .dgeec_pedido <- function(path, combo, timeout, tentativas) {
   args <- as.list(combo); args$Submit <- "Atualizar"
   do.call(httr2::req_body_form, c(list(
@@ -69,8 +69,8 @@
 
 #' Cliente DGEEC
 #'
-#' Cliente R6 para o portal "Regiões em Números - Educação". Gere a
-#' paralelização (httr2), o cache em disco (com resume) e a conversão em
+#' Cliente R6 para o portal "Regioes em Numeros - Educacao". Gere a
+#' paralelizacao (httr2), o cache em disco (com resume) e a conversao em
 #' tabela longa.
 #'
 #' @export
@@ -79,31 +79,31 @@
 #' cli <- DgeecClient$new()
 #' d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
 #' }
-DgeecClient <- R6::R6Class(
+DgeecClient <- R6Class(
   "DgeecClient",
   public = list(
     #' @field cache_dir Pasta de cache (NULL = `tools::R_user_dir("dgeecr","cache")`).
     cache_dir = NULL,
-    #' @field concorrencia Nº de pedidos simultâneos.
+    #' @field concorrencia No de pedidos simultaneos.
     concorrencia = 8L,
     #' @field timeout Timeout por pedido (s).
     timeout = 45L,
     #' @field tentativas Tentativas por pedido.
     tentativas = 3L,
-    #' @field usar_cache Reutilizar HTML já descarregado?
+    #' @field usar_cache Reutilizar HTML ja descarregado?
     usar_cache = TRUE,
-    #' @field lote Nº de pedidos por lote.
-    lote = 2000L,
+    #' @field lote No de pedidos por lote.
+    lote = 250L,
 
     #' @description Cria um cliente.
     #' @param cache_dir Pasta de cache.
-    #' @param concorrencia Nº de pedidos simultâneos.
+    #' @param concorrencia No de pedidos simultaneos.
     #' @param timeout Timeout por pedido (s).
     #' @param tentativas Tentativas por pedido.
     #' @param usar_cache Reutilizar cache em disco.
-    #' @param lote Nº de pedidos por lote.
+    #' @param lote No de pedidos por lote.
     initialize = function(cache_dir = NULL, concorrencia = 8L, timeout = 45L,
-                          tentativas = 3L, usar_cache = TRUE, lote = 2000L) {
+                          tentativas = 3L, usar_cache = TRUE, lote = 250L) {
       self$cache_dir  <- cache_dir %||% tools::R_user_dir("dgeecr", which = "cache")
       self$concorrencia <- as.integer(concorrencia)
       self$timeout      <- as.integer(timeout)
@@ -114,22 +114,22 @@ DgeecClient <- R6::R6Class(
       invisible(self)
     },
 
-    #' @description Catálogo de páginas.
+    #' @description Catalogo de paginas.
     paginas = function() dgeec_paginas(),
 
-    #' @description Dimensões (filtros) de uma página.
-    #' @param pagina Id de página.
+    #' @description Dimensoes (filtros) de uma pagina.
+    #' @param pagina Id de pagina.
     dimensoes = function(pagina) dgeec_dimensoes(pagina, timeout = self$timeout),
 
-    #' @description Extrai dados de uma página.
-    #' @param pagina Id de página (ver [dgeec_paginas()]).
-    #' @param regioes Vetor de códigos de região (NULL = todas).
-    #' @param natureza Códigos de natureza (NULL = desagregado 1/2, ou todos se `incluir_totais`).
-    #' @param genero Códigos de género (NULL = desagregado 1/2, ou todos se `incluir_totais`).
-    #' @param orientacao Códigos de orientação (NULL = desagregado 10/20, ou todos se `incluir_totais`).
-    #' @param incluir_totais Incluir também os níveis totais (0/...)?
+    #' @description Extrai dados de uma pagina.
+    #' @param pagina Id de pagina (ver [dgeec_paginas()]).
+    #' @param regioes Vetor de codigos de regiao (NULL = todas).
+    #' @param natureza Codigos de natureza (NULL = desagregado 1/2, ou todos se `incluir_totais`).
+    #' @param genero Codigos de genero (NULL = desagregado 1/2, ou todos se `incluir_totais`).
+    #' @param orientacao Codigos de orientacao (NULL = desagregado 10/20, ou todos se `incluir_totais`).
+    #' @param incluir_totais Incluir tambem os niveis totais (0/...)?
     #' @param progress Mostrar progresso.
-    #' @return Um `tibble` longo (1 linha = 1 observação).
+    #' @return Um `tibble` longo (1 linha = 1 observacao).
     dados = function(pagina, regioes = NULL, natureza = NULL, genero = NULL,
                      orientacao = NULL, incluir_totais = FALSE, progress = TRUE) {
       meta  <- .dgeec_meta(pagina, timeout = self$timeout, tentativas = self$tentativas)
@@ -150,7 +150,7 @@ DgeecClient <- R6::R6Class(
       })
 
       if (progress) message(sprintf(
-        "[%s] %d combinações | regiões: %d",
+        "[%s] %d combina\u00e7\u00f5es | regi\u00f5es: %d",
         meta$id, nrow(combos),
         if ("ListaRegiao" %in% names(combos)) length(unique(combos$ListaRegiao)) else 1L))
 
@@ -175,9 +175,9 @@ DgeecClient <- R6::R6Class(
 
     #' @description Exporta um data frame em CSV/Parquet/XLSX.
     #' @param dados `tibble` a exportar.
-    #' @param ficheiro Caminho base (sem extensão).
+    #' @param ficheiro Caminho base (sem extensao).
     #' @param formatos Formatos a escrever.
-    #' @param limite_xlsx Máximo de linhas para gerar XLSX (limite do Excel).
+    #' @param limite_xlsx Maximo de linhas para gerar XLSX (limite do Excel).
     exportar = function(dados, ficheiro, formatos = c("csv", "parquet", "xlsx"),
                         limite_xlsx = 1048575L) {
       dgeec_exportar(dados, ficheiro, formatos = formatos, limite_xlsx = limite_xlsx)

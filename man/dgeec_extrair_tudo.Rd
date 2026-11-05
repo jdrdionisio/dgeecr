@@ -2,7 +2,7 @@
 % Please edit documentation in R/exportar.R
 \name{dgeec_extrair_tudo}
 \alias{dgeec_extrair_tudo}
-\title{Extrair e exportar todas as páginas}
+\title{Extrair e exportar todas as paginas}
 \usage{
 dgeec_extrair_tudo(
   dir,
@@ -13,7 +13,7 @@ dgeec_extrair_tudo(
 )
 }
 \arguments{
-\item{dir}{Pasta de saída.}
+\item{dir}{Pasta de saida.}
 
 \item{paginas}{Vetor de ids (NULL = todas).}
 
@@ -27,5 +27,5 @@ dgeec_extrair_tudo(
 (invisivelmente) um \code{tibble} com \code{pagina} e \code{ficheiro}.
 }
 \description{
-Percorre o catálogo, extrai cada página e escreve os formatos pedidos.
+Percorre o catalogo, extrai cada pagina e escreve os formatos pedidos.
 }

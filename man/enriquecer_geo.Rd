@@ -2,7 +2,7 @@
 % Please edit documentation in R/geo.R
 \name{enriquecer_geo}
 \alias{enriquecer_geo}
-\title{Enriquece dados DGEEC com divisões administrativas e de saúde}
+\title{Enriquece dados DGEEC com divisoes administrativas e de saude}
 \usage{
 enriquecer_geo(dados, geo = NULL)
 }
@@ -11,14 +11,14 @@ enriquecer_geo(dados, geo = NULL)
 \code{\link[=dgeec_dados]{dgeec_dados()}}, com as colunas \code{regiao_codigo}, \code{regiao_nome} e
 \code{regiao_tipo}.}
 
-\item{geo}{Tabela de ligação (por omissão \code{\link[=dgeec_geo]{dgeec_geo()}}).}
+\item{geo}{Tabela de ligacao (por omissao \code{\link[=dgeec_geo]{dgeec_geo()}}).}
 }
 \value{
-\code{dados} com as colunas geográficas acrescentadas.
+\code{dados} com as colunas geograficas acrescentadas.
 }
 \description{
-Liga as linhas de nível "Município" ao ficheiro de ligação geográfica e
+Liga as linhas de nivel "Municipio" ao ficheiro de ligacao geografica e
 acrescenta \code{uls_1}, \code{uls_2}, \code{regiao_2024}, \code{nuts1}, \code{nuts2}, \code{nuts3},
-\code{aces_2022} e \code{ars_2022}. Municípios com várias ULS (Lisboa, Porto,
+\code{aces_2022} e \code{ars_2022}. Municipios com varias ULS (Lisboa, Porto,
 Gondomar, Loures, Funchal) ficam com \code{uls_1} e \code{uls_2} preenchidos.
 }

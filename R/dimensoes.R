@@ -1,12 +1,12 @@
-# Metadados das páginas (dimensões e <select>) --------------------------
+# Metadados das paginas (dimensoes e <select>) --------------------------
 
-# Resolve o `path` a partir do `id` (aceita também o próprio path).
+# Resolve o `path` a partir do `id` (aceita tambem o proprio path).
 .resolve_pagina <- function(pagina) {
-  if (length(pagina) != 1L || is.na(pagina)) stop("`pagina` deve ser um único id.", call. = FALSE)
+  if (length(pagina) != 1L || is.na(pagina)) stop("`pagina` deve ser um \u00fanico id.", call. = FALSE)
   p <- .dgeec_paginas
   if (pagina %in% p$id) return(p[p$id == pagina, , drop = FALSE])
   if (pagina %in% p$path) return(p[p$path == pagina, , drop = FALSE])
-  stop(sprintf("Página desconhecida: '%s'. Ver `dgeec_paginas()`.", pagina), call. = FALSE)
+  stop(sprintf("P\u00e1gina desconhecida: '%s'. Ver `dgeec_paginas()`.", pagina), call. = FALSE)
 }
 
 # GET simples com retry.
@@ -24,12 +24,12 @@
   xml2::read_html(httr2::resp_body_raw(resp), encoding = "UTF-8")
 }
 
-#' Dimensões (filtros) de uma página
+#' Dimensoes (filtros) de uma pagina
 #'
-#' Lê a página do portal e devolve os valores possíveis de cada `<select>`,
-#' com o respetivo nível hierárquico (no caso das regiões).
+#' Le a pagina do portal e devolve os valores possiveis de cada `<select>`,
+#' com o respetivo nivel hierarquico (no caso das regioes).
 #'
-#' @param pagina Id de página (ver [dgeec_paginas()]) ou o respetivo `path`.
+#' @param pagina Id de pagina (ver [dgeec_paginas()]) ou o respetivo `path`.
 #' @param timeout Timeout por pedido, em segundos.
 #' @return Um `tibble` com `select`, `codigo`, `rotulo` e `nivel`.
 #' @export
@@ -42,7 +42,7 @@ dgeec_dimensoes <- function(pagina, timeout = 45L) {
   meta$dimensoes
 }
 
-# Obtém os metadados completos de uma página.
+# Obtem os metadados completos de uma pagina.
 .dgeec_meta <- function(pagina, timeout = 45L, tentativas = 3L) {
   info <- .resolve_pagina(pagina)
   html <- .dgeec_obter(info$path, timeout = timeout, tentativas = tentativas) |>
@@ -76,20 +76,20 @@ dgeec_dimensoes <- function(pagina, timeout = 45L) {
   )
 }
 
-# Nível hierárquico a partir do nº de &nbsp; à esquerda do rótulo.
+# Nivel hierarquico a partir do no de &nbsp; a esquerda do rotulo.
 .nivel_regiao <- function(rotulo_raw) {
   nb <- stringr::str_count(stringr::str_extract(rotulo_raw, "^(?:&nbsp;|\u00a0)*"),
                            "&nbsp;|\u00a0")
   as.integer(nb %/% 2L)
 }
 
-# Tipo de região a partir do rótulo.
+# Tipo de regiao a partir do rotulo.
 .tipo_regiao <- function(nome) {
   dplyr::case_when(
     nome == "Portugal" ~ "Portugal",
     stringr::str_starts(nome, "NUTS I:") ~ "NUTS I",
     stringr::str_starts(nome, "NUTS II:") ~ "NUTS II",
     stringr::str_starts(nome, "NUTS III:") ~ "NUTS III",
-    TRUE ~ "Município"
+    TRUE ~ "Munic\u00edpio"
   )
 }

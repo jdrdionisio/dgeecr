@@ -4,8 +4,8 @@
 \alias{DgeecClient}
 \title{Cliente DGEEC}
 \description{
-Cliente R6 para o portal "Regiões em Números - Educação". Gere a
-paralelização (httr2), o cache em disco (com resume) e a conversão em
+Cliente R6 para o portal "Regioes em Numeros - Educacao". Gere a
+paralelizacao (httr2), o cache em disco (com resume) e a conversao em
 tabela longa.
 }
 \examples{
@@ -19,15 +19,15 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
   \describe{
     \item{\code{cache_dir}}{Pasta de cache (NULL = \code{tools::R_user_dir("dgeecr","cache")}).}
 
-    \item{\code{concorrencia}}{Nº de pedidos simultâneos.}
+    \item{\code{concorrencia}}{No de pedidos simultaneos.}
 
     \item{\code{timeout}}{Timeout por pedido (s).}
 
     \item{\code{tentativas}}{Tentativas por pedido.}
 
-    \item{\code{usar_cache}}{Reutilizar HTML já descarregado?}
+    \item{\code{usar_cache}}{Reutilizar HTML ja descarregado?}
 
-    \item{\code{lote}}{Nº de pedidos por lote.}
+    \item{\code{lote}}{No de pedidos por lote.}
   }
   \if{html}{\out{</div>}}
 }
@@ -56,7 +56,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
   timeout = 45L,
   tentativas = 3L,
   usar_cache = TRUE,
-  lote = 2000L
+  lote = 250L
 )}
     \if{html}{\out{</div>}}
   }
@@ -64,11 +64,11 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{cache_dir}}{Pasta de cache.}
-      \item{\code{concorrencia}}{Nº de pedidos simultâneos.}
+      \item{\code{concorrencia}}{No de pedidos simultaneos.}
       \item{\code{timeout}}{Timeout por pedido (s).}
       \item{\code{tentativas}}{Tentativas por pedido.}
       \item{\code{usar_cache}}{Reutilizar cache em disco.}
-      \item{\code{lote}}{Nº de pedidos por lote.}
+      \item{\code{lote}}{No de pedidos por lote.}
     }
     \if{html}{\out{</div>}}
   }
@@ -78,7 +78,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
 \if{html}{\out{<a id="method-DgeecClient-paginas"></a>}}
 \if{latex}{\out{\hypertarget{method-DgeecClient-paginas}{}}}
 \subsection{\code{DgeecClient$paginas()}}{
-  Catálogo de páginas.
+  Catalogo de paginas.
   \subsection{Usage}{
     \if{html}{\out{<div class="r">}}
     \preformatted{DgeecClient$paginas()}
@@ -90,7 +90,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
 \if{html}{\out{<a id="method-DgeecClient-dimensoes"></a>}}
 \if{latex}{\out{\hypertarget{method-DgeecClient-dimensoes}{}}}
 \subsection{\code{DgeecClient$dimensoes()}}{
-  Dimensões (filtros) de uma página.
+  Dimensoes (filtros) de uma pagina.
   \subsection{Usage}{
     \if{html}{\out{<div class="r">}}
     \preformatted{DgeecClient$dimensoes(pagina)}
@@ -99,7 +99,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
   \subsection{Arguments}{
     \if{html}{\out{<div class="arguments">}}
     \describe{
-      \item{\code{pagina}}{Id de página.}
+      \item{\code{pagina}}{Id de pagina.}
     }
     \if{html}{\out{</div>}}
   }
@@ -109,7 +109,7 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
 \if{html}{\out{<a id="method-DgeecClient-dados"></a>}}
 \if{latex}{\out{\hypertarget{method-DgeecClient-dados}{}}}
 \subsection{\code{DgeecClient$dados()}}{
-  Extrai dados de uma página.
+  Extrai dados de uma pagina.
   \subsection{Usage}{
     \if{html}{\out{<div class="r">}}
     \preformatted{DgeecClient$dados(
@@ -126,18 +126,18 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
   \subsection{Arguments}{
     \if{html}{\out{<div class="arguments">}}
     \describe{
-      \item{\code{pagina}}{Id de página (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
-      \item{\code{regioes}}{Vetor de códigos de região (NULL = todas).}
-      \item{\code{natureza}}{Códigos de natureza (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
-      \item{\code{genero}}{Códigos de género (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
-      \item{\code{orientacao}}{Códigos de orientação (NULL = desagregado 10/20, ou todos se \code{incluir_totais}).}
-      \item{\code{incluir_totais}}{Incluir também os níveis totais (0/...)?}
+      \item{\code{pagina}}{Id de pagina (ver \code{\link[=dgeec_paginas]{dgeec_paginas()}}).}
+      \item{\code{regioes}}{Vetor de codigos de regiao (NULL = todas).}
+      \item{\code{natureza}}{Codigos de natureza (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
+      \item{\code{genero}}{Codigos de genero (NULL = desagregado 1/2, ou todos se \code{incluir_totais}).}
+      \item{\code{orientacao}}{Codigos de orientacao (NULL = desagregado 10/20, ou todos se \code{incluir_totais}).}
+      \item{\code{incluir_totais}}{Incluir tambem os niveis totais (0/...)?}
       \item{\code{progress}}{Mostrar progresso.}
     }
     \if{html}{\out{</div>}}
   }
   \subsection{Returns}{
-    Um \code{tibble} longo (1 linha = 1 observação).
+    Um \code{tibble} longo (1 linha = 1 observacao).
   }
 }
 
@@ -160,9 +160,9 @@ d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{dados}}{\code{tibble} a exportar.}
-      \item{\code{ficheiro}}{Caminho base (sem extensão).}
+      \item{\code{ficheiro}}{Caminho base (sem extensao).}
       \item{\code{formatos}}{Formatos a escrever.}
-      \item{\code{limite_xlsx}}{Máximo de linhas para gerar XLSX (limite do Excel).}
+      \item{\code{limite_xlsx}}{Maximo de linhas para gerar XLSX (limite do Excel).}
     }
     \if{html}{\out{</div>}}
   }

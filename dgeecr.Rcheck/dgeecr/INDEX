@@ -1,0 +1,10 @@
+dgeec_dados             Extrair dados de uma pagina (atalho)
+dgeec_dimensoes         Dimensoes (filtros) de uma pagina
+dgeec_exportar          Exportar dados
+dgeec_extrair_tudo      Extrair e exportar todas as paginas
+dgeec_geo               Tabela de ligacao municipio -> divisoes
+                        administrativas e de saude
+dgeec_paginas           Catalogo de paginas disponiveis
+DgeecClient             Cliente DGEEC
+enriquecer_geo          Enriquece dados DGEEC com divisoes
+                        administrativas e de saude

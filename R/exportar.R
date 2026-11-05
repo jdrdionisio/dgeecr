@@ -1,17 +1,17 @@
-# Exportação ------------------------------------------------------------
+# Exportacao ------------------------------------------------------------
 
 #' Exportar dados
 #'
 #' Escreve um `data.frame` em disco. O CSV e o Parquet suportam o conjunto
-#' completo; o XLSX só é gerado se o número de linhas couber no limite de uma
-#' aba do Excel (`limite_xlsx`), caso contrário é ignorado com aviso.
+#' completo; o XLSX so e gerado se o numero de linhas couber no limite de uma
+#' aba do Excel (`limite_xlsx`), caso contrario e ignorado com aviso.
 #'
 #' @param dados `data.frame`/`tibble` a exportar.
-#' @param ficheiro Caminho base, sem extensão.
+#' @param ficheiro Caminho base, sem extensao.
 #' @param formatos Formatos a escrever: qualquer subconjunto de
 #'   `"csv"`, `"parquet"`, `"xlsx"`.
-#' @param limite_xlsx Máximo de linhas para gerar XLSX (limite do Excel:
-#'   1 048 576; por segurança usa-se 1 048 575).
+#' @param limite_xlsx Maximo de linhas para gerar XLSX (limite do Excel:
+#'   1 048 576; por seguranca usa-se 1 048 575).
 #' @return (invisivelmente) o vetor de ficheiros escritos.
 #' @export
 dgeec_exportar <- function(dados, ficheiro, formatos = c("csv", "parquet", "xlsx"),
@@ -44,11 +44,11 @@ dgeec_exportar <- function(dados, ficheiro, formatos = c("csv", "parquet", "xlsx
   invisible(escritos)
 }
 
-#' Extrair e exportar todas as páginas
+#' Extrair e exportar todas as paginas
 #'
-#' Percorre o catálogo, extrai cada página e escreve os formatos pedidos.
+#' Percorre o catalogo, extrai cada pagina e escreve os formatos pedidos.
 #'
-#' @param dir Pasta de saída.
+#' @param dir Pasta de saida.
 #' @param paginas Vetor de ids (NULL = todas).
 #' @param formatos Formatos a escrever (ver [dgeec_exportar()]).
 #' @param cliente Um [DgeecClient]. Se NULL, cria um.

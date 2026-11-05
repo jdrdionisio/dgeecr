@@ -2,19 +2,19 @@
 % Please edit documentation in R/geo.R
 \name{dgeec_geo}
 \alias{dgeec_geo}
-\title{Tabela de ligação município -> divisões administrativas e de saúde}
+\title{Tabela de ligacao municipio -> divisoes administrativas e de saude}
 \usage{
 dgeec_geo(path = NULL)
 }
 \arguments{
-\item{path}{Caminho alternativo para o CSV de ligação.}
+\item{path}{Caminho alternativo para o CSV de ligacao.}
 }
 \value{
-Um \code{tibble} por município.
+Um \code{tibble} por municipio.
 }
 \description{
-Lê o ficheiro de ligação geográfica incluído no pacote
-(\code{inst/extdata/geo_linkage_2024_v8.csv}) e agrega-o ao nível do município,
-resolvendo as ULS que dividem um município ao nível da freguesia em
+Le o ficheiro de ligacao geografica incluido no pacote
+(\code{inst/extdata/geo_linkage_2024_v8.csv}) e agrega-o ao nivel do municipio,
+resolvendo as ULS que dividem um municipio ao nivel da freguesia em
 \code{uls_1} e \code{uls_2}.
 }
