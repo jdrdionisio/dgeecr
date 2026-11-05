@@ -1,22 +1,22 @@
-# Authors and Citation
+# Autores e citação
 
-## Authors
+## Autores
 
-- **João Dionísio**. Author, maintainer.
+- **João Dionísio**. Autor, mantenedor.
 
-## Citation
+## Citação
 
-Source:
+Fonte:
 [`DESCRIPTION`](https://github.com/jdrdionisio/dgeecr/blob/HEAD/DESCRIPTION)
 
-João Dionísio (2026). *dgeecr: Acesso Aos Dados De "Regiões Em Números -
-Educação" (DGEEC)*. R package version 0.1.3,
+João Dionísio (2026). *dgeecr: Access to Portuguese Education Statistics
+by Region (DGEEC)*. R package version 0.1.4,
 <https://jdrdionisio.github.io/dgeecr/>.
 
     @Manual{,
-      title = {dgeecr: Acesso Aos Dados De "Regiões Em Números - Educação" (DGEEC)},
+      title = {dgeecr: Access to Portuguese Education Statistics by Region (DGEEC)},
       author = {{João Dionísio}},
       year = {2026},
-      note = {R package version 0.1.3},
+      note = {R package version 0.1.4},
       url = {https://jdrdionisio.github.io/dgeecr/},
     }

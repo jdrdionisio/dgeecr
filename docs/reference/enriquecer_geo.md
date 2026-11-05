@@ -6,13 +6,13 @@ acrescenta `uls_1`, `uls_2`, `uls_principal`, `n_uls`, `regiao_2024`,
 varias ULS (Lisboa, Porto, Gondomar, Loures, Funchal) ficam com
 `uls_1`/`uls_2`.
 
-## Usage
+## Uso
 
 ``` r
 enriquecer_geo(dados, geo = NULL)
 ```
 
-## Arguments
+## Argumentos
 
 - dados:
 
@@ -27,6 +27,6 @@ enriquecer_geo(dados, geo = NULL)
   Tabela de ligacao (por omissao
   [`dgeec_geo()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_geo.md)).
 
-## Value
+## Valor
 
 `dados` com as colunas geograficas acrescentadas.

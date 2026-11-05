@@ -2,7 +2,7 @@
 
 Percorre o catalogo, extrai cada pagina e escreve os formatos pedidos.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_extrair_tudo(
@@ -14,7 +14,7 @@ dgeec_extrair_tudo(
 )
 ```
 
-## Arguments
+## Argumentos
 
 - dir:
 
@@ -39,6 +39,6 @@ dgeec_extrair_tudo(
 
   Argumentos passados a `cliente$dados()`.
 
-## Value
+## Valor
 
 (invisivelmente) um `tibble` com `pagina` e `ficheiro`.

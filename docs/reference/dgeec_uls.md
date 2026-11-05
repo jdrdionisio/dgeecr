@@ -2,19 +2,19 @@
 
 Catalogo de ULS (2024)
 
-## Usage
+## Uso
 
 ``` r
 dgeec_uls(geo = NULL)
 ```
 
-## Arguments
+## Argumentos
 
 - geo:
 
   Tabela de ligacao (por omissao
   [`dgeec_geo()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_geo.md)).
 
-## Value
+## Valor
 
 Um `tibble` com `uls`, `regiao_2024`, `n_municipios` e `municipios`.

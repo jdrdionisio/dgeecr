@@ -30,11 +30,11 @@ dezenas de milhares de pedidos. O `dgeecr` trata disso:
 install.packages("dgeecr", repos = NULL, type = "source")
 ```
 
-Versão publicada (v0.1.3):
+Versão publicada (v0.1.4):
 
 ``` r
 install.packages(
-  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.3/dgeecr_0.1.3.tar.gz",
+  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.4/dgeecr_0.1.4.tar.gz",
   repos = NULL, type = "source"
 )
 ```
@@ -187,7 +187,7 @@ configurável (`concorrencia`, 8 por omissão) e cache em disco, para não
 repetir pedidos. Durante a verificação da CRAN os exemplos de rede não
 correm (`\dontrun`) e o número de processos é limitado a 2.
 
-# Package index
+# Índice de pacotes
 
 ## Cliente
 
@@ -242,7 +242,7 @@ Ligações a divisões administrativas e de saúde
 - [`dgeec_limpar_cache()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_limpar_cache.md)
   : Limpar o cache em disco
 
-# Articles
+# Artigos
 
 ### Guias
 

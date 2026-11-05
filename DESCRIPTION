@@ -1,16 +1,21 @@
 Package: dgeecr
-Title: Acesso Aos Dados De "Regiões Em Números - Educação" (DGEEC)
-Version: 0.1.3
+Title: Access to Portuguese Education Statistics by Region (DGEEC)
+Version: 0.1.4
 Authors@R:
     person("João Dionísio", email = "joaodrdionisio@gmail.com", role = c("aut", "cre"))
-Description: Cliente R para extrair, em paralelo e com cache em disco, os
-    dados do portal "Regiões em Números - Educação" da Direção-Geral de
-    Estatísticas da Educação e Ciência (DGEEC). Cada página do portal é um
-    formulário cujo produto cartesiano de opções é percorrido via httr2
-    (req_perform_parallel), o HTML é convertido numa tabela longa
-    (1 linha = 1 observação) com rvest/dplyr/tidyr e os resultados podem ser
-    enriquecidos com divisões administrativas e de saúde (ULS, NUTS, região
-    2024) a partir de um ficheiro de ligação geográfica incluído no pacote.
+Description: Client for the education statistics portal of the
+    Directorate-General for Education and Science Statistics (DGEEC) of
+    Portugal, <https://estatisticas-educacao.dgeec.medu.pt/regioesemnumeros/>.
+    Each page of the portal is a form whose cartesian product of options is
+    traversed with parallel 'httr2' requests, and the returned HTML is
+    converted into a long table (one row per observation), covering students
+    enrolled by school year, region, school level, nature (public or private),
+    gender and age group, together with establishment, indicator and
+    human-resource tables. Results can be enriched with Portuguese
+    administrative and health divisions (ULS, NUTS and the 2024 health
+    regions) using a linkage file bundled with the package, and requested by
+    name as well as by internal code. Downloaded pages are cached on disk, so
+    that interrupted extractions can be resumed.
 License: Apache License (>= 2)
 URL: https://jdrdionisio.github.io/dgeecr/, https://github.com/jdrdionisio/dgeecr
 BugReports: https://github.com/jdrdionisio/dgeecr/issues
@@ -18,6 +23,7 @@ Copyright: The bundled geographic linkage file (inst/extdata) is compiled from
     Portuguese official legislation and health-authority publications, and is
     included with permission; see inst/COPYRIGHTS.
 Encoding: UTF-8
+Language: pt
 Depends: R (>= 4.1)
 Imports:
     dplyr,

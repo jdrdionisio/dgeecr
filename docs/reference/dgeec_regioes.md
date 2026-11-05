@@ -4,13 +4,13 @@ Devolve a lista de regioes aceites em `regioes=` por
 [DgeecClient](https://jdrdionisio.github.io/dgeecr/reference/DgeecClient.md)`$dados()`,
 com o codigo e o nome, para nao ser necessario conhecer os codigos.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_regioes(pagina = "pre_escolar", timeout = 45L)
 ```
 
-## Arguments
+## Argumentos
 
 - pagina:
 
@@ -23,13 +23,13 @@ dgeec_regioes(pagina = "pre_escolar", timeout = 45L)
 
   Timeout por pedido, em segundos.
 
-## Value
+## Valor
 
 Um `tibble` com `regiao_codigo`, `regiao_nome`, `regiao_tipo` e
 `regiao_nivel` (0 = Portugal e NUTS I, 1 = NUTS II, 2 = NUTS III, 3 =
 municipio).
 
-## Examples
+## Exemplos
 
 ``` r
 if (FALSE) { # \dontrun{

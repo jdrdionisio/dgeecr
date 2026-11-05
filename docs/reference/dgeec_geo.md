@@ -5,19 +5,19 @@ Le o ficheiro de ligacao geografica incluido no pacote
 municipio, resolvendo as ULS que dividem um municipio ao nivel da
 freguesia em `uls_1` e `uls_2`.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_geo(path = NULL)
 ```
 
-## Arguments
+## Argumentos
 
 - path:
 
   Caminho alternativo para o CSV de ligacao.
 
-## Value
+## Valor
 
 Um `tibble` por municipio, com `uls_1`, `uls_2`, `n_uls`, `uls_todas`,
 `uls_principal` (ULS com mais freguesias), `uls_hierarquia_csp`

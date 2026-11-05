@@ -3,13 +3,13 @@
 Le a pagina do portal e devolve os valores possiveis de cada `<select>`,
 com o respetivo nivel hierarquico (no caso das regioes).
 
-## Usage
+## Uso
 
 ``` r
 dgeec_dimensoes(pagina, timeout = 45L)
 ```
 
-## Arguments
+## Argumentos
 
 - pagina:
 
@@ -21,11 +21,11 @@ dgeec_dimensoes(pagina, timeout = 45L)
 
   Timeout por pedido, em segundos.
 
-## Value
+## Valor
 
 Um `tibble` com `select`, `codigo`, `rotulo` e `nivel`.
 
-## Examples
+## Exemplos
 
 ``` r
 if (FALSE) { # \dontrun{

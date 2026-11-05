@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   dgeecr: dgeecr.html
-last_built: 2026-11-05T17:45Z
+last_built: 2026-11-05T17:51Z
 urls:
   reference: https://jdrdionisio.github.io/dgeecr/reference
   article: https://jdrdionisio.github.io/dgeecr/articles

@@ -6,7 +6,7 @@ paralelo e com cache em disco, devolvendo tabelas longas (1 linha = 1
 observacao) e permitindo enriquecimento geografico (ULS, NUTS, regiao
 2024).
 
-## See also
+## Veja também
 
 Useful links:
 
@@ -16,7 +16,7 @@ Useful links:
 
 - Report bugs at <https://github.com/jdrdionisio/dgeecr/issues>
 
-## Author
+## Autor
 
 **Maintainer**: João Dionísio <joaodrdionisio@gmail.com>
 

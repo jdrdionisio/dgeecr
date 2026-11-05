@@ -2,17 +2,17 @@
 
 Devolve o conjunto de paginas (tabelas) publicadas no portal.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_paginas()
 ```
 
-## Value
+## Valor
 
 Um `tibble` com as colunas `id`, `grupo`, `path` e `descricao`.
 
-## Examples
+## Exemplos
 
 ``` r
 dgeec_paginas()

@@ -2,13 +2,13 @@
 
 Soma os valores dos municipios pertencentes a cada ULS.
 
-## Usage
+## Uso
 
 ``` r
 agregar_uls(dados, geo = NULL, multiplas = c("excluir", "duplicar", "maior"))
 ```
 
-## Arguments
+## Argumentos
 
 - dados:
 
@@ -29,6 +29,6 @@ agregar_uls(dados, geo = NULL, multiplas = c("excluir", "duplicar", "maior"))
   cada ULS (dupla contagem); `"maior"` atribui a ULS com mais
   freguesias.
 
-## Value
+## Valor
 
 Um `tibble` ao nivel da ULS (+ atributo `municipios_excluidos`).

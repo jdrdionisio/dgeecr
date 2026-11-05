@@ -4,13 +4,13 @@ Cria um
 [DgeecClient](https://jdrdionisio.github.io/dgeecr/reference/DgeecClient.md)
 e extrai os dados de uma pagina.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_dados(pagina, ..., cliente = NULL)
 ```
 
-## Arguments
+## Argumentos
 
 - pagina:
 
@@ -28,11 +28,11 @@ dgeec_dados(pagina, ..., cliente = NULL)
   [DgeecClient](https://jdrdionisio.github.io/dgeecr/reference/DgeecClient.md)
   opcional.
 
-## Value
+## Valor
 
 Um `tibble` longo.
 
-## Examples
+## Exemplos
 
 ``` r
 if (FALSE) { # \dontrun{

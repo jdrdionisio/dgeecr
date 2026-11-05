@@ -325,7 +325,7 @@ The objects of this class are cloneable with this method.
 
   Whether to make a deep clone.
 
-## Examples
+## Exemplos
 
 ``` r
 if (FALSE) { # \dontrun{

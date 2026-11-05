@@ -4,7 +4,7 @@ Escreve um `data.frame` em disco. O CSV e o Parquet suportam o conjunto
 completo; o XLSX so e gerado se o numero de linhas couber no limite de
 uma aba do Excel (`limite_xlsx`), caso contrario e ignorado com aviso.
 
-## Usage
+## Uso
 
 ``` r
 dgeec_exportar(
@@ -15,7 +15,7 @@ dgeec_exportar(
 )
 ```
 
-## Arguments
+## Argumentos
 
 - dados:
 
@@ -35,6 +35,6 @@ dgeec_exportar(
   Maximo de linhas para gerar XLSX (limite do Excel: 1 048 576; por
   seguranca usa-se 1 048 575).
 
-## Value
+## Valor
 
 (invisivelmente) o vetor de ficheiros escritos.

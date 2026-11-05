@@ -2,12 +2,12 @@
 
 Pasta de cache por omissao
 
-## Usage
+## Uso
 
 ``` r
 dgeec_cache_dir()
 ```
 
-## Value
+## Valor
 
 O caminho da pasta de cache do pacote.

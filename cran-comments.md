@@ -38,6 +38,13 @@ Status: 1 NOTE
 - Os pedidos ao portal são feitos em lotes sequenciais com cache em disco, para
   minimizar o número de acessos ao serviço externo.
 
+## Língua
+
+O `Title` e o `Description` estão em inglês (é o que a CRAN mostra na página do
+pacote). As páginas de ajuda, a vignette e o README estão em português, pelo que
+o DESCRIPTION declara `Language: pt` (campo previsto no 'Writing R Extensions'
+para documentação que não está em inglês).
+
 ## Propriedade intelectual dos componentes
 
 Todo o código é do autor. O único componente de terceiros é o ficheiro de

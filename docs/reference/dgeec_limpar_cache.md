@@ -2,7 +2,7 @@
 
 Remove o HTML cru descarregado e/ou o resultado ja interpretado (RDS).
 
-## Usage
+## Uso
 
 ``` r
 dgeec_limpar_cache(
@@ -13,7 +13,7 @@ dgeec_limpar_cache(
 )
 ```
 
-## Arguments
+## Argumentos
 
 - dir:
 
@@ -32,6 +32,6 @@ dgeec_limpar_cache(
 
   Pedir confirmacao (por omissao, apenas em sessao interativa).
 
-## Value
+## Valor
 
 (invisivelmente) o numero de ficheiros removidos.

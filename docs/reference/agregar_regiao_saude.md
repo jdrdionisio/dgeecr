@@ -2,13 +2,13 @@
 
 Agrega dados ao nivel da regiao de saude 2024
 
-## Usage
+## Uso
 
 ``` r
 agregar_regiao_saude(dados, geo = NULL)
 ```
 
-## Arguments
+## Argumentos
 
 - dados:
 
@@ -20,6 +20,6 @@ agregar_regiao_saude(dados, geo = NULL)
   Tabela de ligacao (por omissao
   [`dgeec_geo()`](https://jdrdionisio.github.io/dgeecr/reference/dgeec_geo.md)).
 
-## Value
+## Valor
 
 Um `tibble` ao nivel da regiao de saude.
