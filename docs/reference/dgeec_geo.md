@@ -20,5 +20,6 @@ dgeec_geo(path = NULL)
 ## Value
 
 Um `tibble` por municipio, com `uls_1`, `uls_2`, `n_uls`, `uls_todas`,
-`uls_principal` (ULS com mais freguesias), `regiao_2024`, `nuts1`,
-`nuts2`, `nuts3`, `aces_2022`, `ars_2022` e `freguesias`.
+`uls_principal` (ULS com mais freguesias), `uls_hierarquia_csp`
+(nomenclatura do BI-CSP), `regiao_2024`, `nuts1`, `nuts2`, `nuts3`,
+`aces_2022`, `ars_2022` e `freguesias`.

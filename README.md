@@ -26,11 +26,11 @@ pedidos. O `dgeecr` trata disso:
 install.packages("dgeecr", repos = NULL, type = "source")
 ```
 
-Versão publicada (v0.1.2):
+Versão publicada (v0.1.3):
 
 ```r
 install.packages(
-  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.2/dgeecr_0.1.2.tar.gz",
+  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.3/dgeecr_0.1.3.tar.gz",
   repos = NULL, type = "source"
 )
 ```
@@ -148,3 +148,27 @@ Uma linha por observação, com as colunas de contexto (`pagina`, `grupo`,
 
 `inst/extdata/geo_linkage_2024_v8.csv` — liga freguesia/município a ULS 2024,
 ACES, ARS, NUTS 2013/2024 e região de saúde 2024.
+
+## Fontes dos dados
+
+Os dados de educação são obtidos em tempo de execução do portal público
+«Regiões em Números - Educação» da DGEEC e não são redistribuídos com o pacote.
+
+O ficheiro de ligação geográfica que o pacote distribui **não é obra do autor**:
+foi compilado por terceiros a partir de legislação e publicações oficiais
+portuguesas, e é incluído com autorização de partilha. As fontes completas — a
+classificação das ULS (Decreto-Lei n.º 102/2023 e Declaração de Retificação
+n.º 38/2024/1), a atribuição das áreas geográficas por região de saúde
+(Portarias n.º 273/2009, 310/2012, 394-A/2012, 394-B/2012, 275/2009, 308/2012,
+272/2009, 124/2016 e Decreto Legislativo Regional n.º 26/2022/A, com os planos
+locais de saúde e de atividades onde faltavam dados) e as divisões
+administrativas (Lei n.º 11-A/2013 e Lei n.º 25-A/2025) — estão documentadas em
+[`inst/COPYRIGHTS`](inst/COPYRIGHTS).
+
+## Uso responsável do portal
+
+Uma extração completa faz vários milhares de pedidos ao portal da DGEEC. O
+pacote fá-los em lotes sequenciais (parâmetro `lote`) com concorrência
+configurável (`concorrencia`, 8 por omissão) e cache em disco, para não repetir
+pedidos. Durante a verificação da CRAN os exemplos de rede não correm
+(`\dontrun`) e o número de processos é limitado a 2.

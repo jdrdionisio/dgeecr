@@ -1,6 +1,6 @@
 Package: dgeecr
 Title: Acesso Aos Dados De "Regiões Em Números - Educação" (DGEEC)
-Version: 0.1.2
+Version: 0.1.3
 Authors@R:
     person("João Dionísio", email = "joaodrdionisio@gmail.com", role = c("aut", "cre"))
 Description: Cliente R para extrair, em paralelo e com cache em disco, os
@@ -14,6 +14,9 @@ Description: Cliente R para extrair, em paralelo e com cache em disco, os
 License: Apache License (>= 2)
 URL: https://jdrdionisio.github.io/dgeecr/, https://github.com/jdrdionisio/dgeecr
 BugReports: https://github.com/jdrdionisio/dgeecr/issues
+Copyright: The bundled geographic linkage file (inst/extdata) is compiled from
+    Portuguese official legislation and health-authority publications, and is
+    included with permission; see inst/COPYRIGHTS.
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:

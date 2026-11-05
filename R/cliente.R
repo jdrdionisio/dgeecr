@@ -87,7 +87,8 @@ DgeecClient <- R6Class(
     cache_dir = NULL,
     #' @field concorrencia No de pedidos simultaneos (rede).
     concorrencia = 8L,
-    #' @field nucleos No de processos para o parsing (NULL = todos menos 2).
+    #' @field nucleos No de processos para o parsing (NULL = todos menos 2,
+    #'   ou 2 durante a verificacao da CRAN).
     nucleos = NULL,
     #' @field timeout Timeout por pedido (s).
     timeout = 45L,
@@ -113,9 +114,14 @@ DgeecClient <- R6Class(
                           timeout = 45L, tentativas = 3L, usar_cache = TRUE,
                           cache_dados = TRUE, lote = 250L) {
       self$cache_dir    <- cache_dir %||% tools::R_user_dir("dgeecr", which = "cache")
-      self$concorrencia <- as.integer(concorrencia)
-      self$nucleos      <- nucleos %||%
-        max(1L, detectCores(logical = TRUE) - 2L)
+      # Politica da CRAN: nunca mais de 2 cores/threads em simultaneo durante a
+      # verificacao (sinalizada por _R_CHECK_LIMIT_CORES_).
+      limite <- .limite_cores_cran()
+      .cap   <- function(x) if (limite) min(x, 2L) else x
+      self$concorrencia <- .cap(as.integer(concorrencia))
+      self$nucleos      <- .cap(if (is.null(nucleos))
+                                  max(1L, detectCores(logical = TRUE) - 2L)
+                                else as.integer(nucleos))
       self$timeout      <- as.integer(timeout)
       self$tentativas   <- as.integer(tentativas)
       self$usar_cache   <- isTRUE(usar_cache)

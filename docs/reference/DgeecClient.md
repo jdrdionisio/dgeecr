@@ -16,7 +16,8 @@ paralelizacao (httr2 na rede, `parallel` no parsing), o cache em disco
 
 - `nucleos`:
 
-  No de processos para o parsing (NULL = todos menos 2).
+  No de processos para o parsing (NULL = todos menos 2, ou 2 durante a
+  verificacao da CRAN).
 
 - `timeout`:
 

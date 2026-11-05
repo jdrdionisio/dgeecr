@@ -28,10 +28,23 @@ Status: 1 NOTE
   Toda a rede está em **exemplos `\dontrun`** e nos testes protegidos por
   `skip_on_cran()`, pelo que `R CMD check` não faz pedidos externos. Os testes
   usam fixtures HTML reais guardadas em `tests/testthat/fixtures/`.
+- **Uso de cores**: conforme a política da CRAN ("never use more than two
+  simultaneously"), quando `_R_CHECK_LIMIT_CORES_` está definido — como durante
+  a verificação — o número de processos de parsing e de pedidos simultâneos é
+  limitado a 2. Fora da verificação, os valores são os pedidos pelo utilizador
+  (`nucleos`, por omissão cores-2; `concorrencia`, 8).
 - O parsing em paralelo usa `parallel::mclapply` (fork), com recurso a `lapply`
   em plataformas sem fork (Windows).
-- O ficheiro de ligação geográfica em `inst/extdata/` deriva de divisões
-  administrativas e de saúde portuguesas (DICOFRE), sem dados pessoais.
+- Os pedidos ao portal são feitos em lotes sequenciais com cache em disco, para
+  minimizar o número de acessos ao serviço externo.
+
+## Propriedade intelectual dos componentes
+
+Todo o código é do autor. O único componente de terceiros é o ficheiro de
+ligação geográfica `inst/extdata/geo_linkage_2024_v8.csv`, compilado por
+terceiros a partir de legislação e publicações oficiais portuguesas e incluído
+com autorização de partilha. As fontes estão documentadas em `inst/COPYRIGHTS`
+e referidas no campo `Copyright` do DESCRIPTION.
 
 ## Licença
 

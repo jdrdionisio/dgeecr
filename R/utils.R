@@ -29,3 +29,10 @@
 
 # Concatenacao segura (equivalente a `%||%`).
 `%||%` <- function(x, y) if (is.null(x) || length(x) == 0L || all(is.na(x))) y else x
+
+# Durante a verificacao, a CRAN define `_R_CHECK_LIMIT_CORES_`. A politica da
+# CRAN proibe usar mais de 2 cores/threads em simultaneo nesse contexto.
+.limite_cores_cran <- function() {
+  v <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+  nzchar(v) && !tolower(v) %in% c("false", "no", "0")
+}

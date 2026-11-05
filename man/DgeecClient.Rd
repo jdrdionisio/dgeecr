@@ -22,7 +22,8 @@ d <- cli$dados("pre_escolar", regioes = c("Portugal", "Moncao"))
 
     \item{\code{concorrencia}}{No de pedidos simultaneos (rede).}
 
-    \item{\code{nucleos}}{No de processos para o parsing (NULL = todos menos 2).}
+    \item{\code{nucleos}}{No de processos para o parsing (NULL = todos menos 2,
+ou 2 durante a verificacao da CRAN).}
 
     \item{\code{timeout}}{Timeout por pedido (s).}
 

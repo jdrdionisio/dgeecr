@@ -17,8 +17,9 @@
 #'
 #' @param path Caminho alternativo para o CSV de ligacao.
 #' @return Um `tibble` por municipio, com `uls_1`, `uls_2`, `n_uls`,
-#'   `uls_todas`, `uls_principal` (ULS com mais freguesias), `regiao_2024`,
-#'   `nuts1`, `nuts2`, `nuts3`, `aces_2022`, `ars_2022` e `freguesias`.
+#'   `uls_todas`, `uls_principal` (ULS com mais freguesias), `uls_hierarquia_csp`
+#'   (nomenclatura do BI-CSP), `regiao_2024`, `nuts1`, `nuts2`, `nuts3`,
+#'   `aces_2022`, `ars_2022` e `freguesias`.
 #' @export
 dgeec_geo <- function(path = NULL) {
   path <- path %||% system.file("extdata", "geo_linkage_2024_v8.csv", package = "dgeecr")
@@ -38,6 +39,7 @@ dgeec_geo <- function(path = NULL) {
       regiao_2024 = .data$regiao_2024,
       aces_2022  = .data$aces_2022,
       ars_2022   = .data$ars_2022,
+      uls_hierarquia_csp = .data$uls_hierarquia_csp,
       uls        = .data$uls_2024
     ) |>
     dplyr::group_by(.data$municipio, .data$nuts1) |>
@@ -48,6 +50,7 @@ dgeec_geo <- function(path = NULL) {
       regiao_2024 = dplyr::first(.data$regiao_2024),
       aces_2022 = dplyr::first(.data$aces_2022),
       ars_2022 = dplyr::first(.data$ars_2022),
+      uls_hierarquia_csp = dplyr::first(.data$uls_hierarquia_csp),
       freguesias = dplyr::n(),
       uls = list(sort(unique(stats::na.omit(.data$uls)))),
       .groups = "drop"

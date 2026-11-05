@@ -1,0 +1,107 @@
+FONTES DO FICHEIRO DE LIGACAO GEOGRAFICA
+=========================================
+
+Ficheiro:  inst/extdata/geo_linkage_2024_v8.csv
+Conteudo:  ligacao de freguesia/municipio a ULS (2023 e 2024), ACES (2022),
+           ARS (2022), NUTS (2013 e 2024) e regiao de saude 2024,
+           com uma linha por freguesia.
+
+Este ficheiro NAO e obra do autor do pacote. Foi compilado por terceiros a
+partir de legislacao e publicacoes oficiais portuguesas, e cedido para
+distribuicao e partilha com outras entidades.
+
+
+1. CLASSIFICACAO DAS UNIDADES LOCAIS DE SAUDE (ULS)
+---------------------------------------------------
+
+  - Decreto-Lei n.o 102/2023, de 7 de novembro (transformacao dos ACES e de
+    centros de saude especificos em ULS):
+    https://files.diariodarepublica.pt/1s/2023/11/21500/0000400020.pdf
+
+  - Declaracao de Retificacao n.o 38/2024/1 (altera o concelho de Ovar do ACES
+    da ULS da Regiao de Aveiro para a ULS de Entre Douro e Vouga; e a ULS do
+    Norte Alentejano passa a ULS do Alto Alentejo):
+    https://diariodarepublica.pt/dr/detalhe/declaracao-retificacao/38-2024-892125866
+
+
+2. ATRIBUICAO DAS AREAS GEOGRAFICAS DOS CONCELHOS / FREGUESIAS
+--------------------------------------------------------------
+
+  Regiao de Saude do Norte
+    - Portaria n.o 273/2009:
+      https://files.diariodarepublica.pt/1s/2009/03/05400/0171201720.pdf
+    - Portaria n.o 310/2012:
+      https://files.diariodarepublica.pt/1s/2012/10/19600/0562905631.pdf
+    - Declaracao de Retificacao n.o 62/2012, de 2 de novembro:
+      https://diariodarepublica.pt/dr/detalhe/declaracao-retificacao/62-2012-191511
+    - ULS de Matosinhos e ULS do Alto Minho: Plano de Atividades 2019 da
+      Administracao Regional de Saude do Norte:
+      https://www.arsnorte.min-saude.pt/wp-content/uploads/sites/3/2019/05/Plano_Atividades_ARSN_2019.pdf
+
+  Regiao de Saude do Centro
+    - Portaria n.o 274/2009 (REVOGADA; mantida como contexto historico: a ULS
+      de Castelo Branco, a excecao de Vila de Rei, advem dos antigos ACES do
+      Pinhal Interior Sul e ACES Beira Interior Sul, ai definidos):
+      https://files.diariodarepublica.pt/1s/2009/03/05400/0172001726.pdf
+    - Portaria n.o 394-A/2012:
+      https://files.diariodarepublica.pt/1s/2012/11/23101/0000200005.pdf
+    - ULS da Guarda: Plano Local de Saude:
+      https://www.ulsguarda.min-saude.pt/wp-content/uploads/sites/6/2017/08/Plano-Local-de-Saude.pdf
+
+  Regiao de Saude de Lisboa e Vale do Tejo
+    - Portaria n.o 276/2009 (REVOGADA; mantida como contexto historico):
+      https://files.diariodarepublica.pt/1s/2009/03/05400/0172801737.pdf
+    - Portaria n.o 394-B/2012:
+      https://files.diariodarepublica.pt/1s/2012/11/23101/0000500011.pdf
+    - Devido a Reorganizacao Administrativa de Lisboa de 2012 (Lei n.o 56/2012,
+      de 8 de novembro) foram consultados os Planos Locais de Saude de:
+        * ACES Lisboa Central:
+          https://bicsp.min-saude.pt/pt/biufs/3/937/30038/3110272/QUEM%20SOMOS/Plano%20Local%20de%20Sa%C3%BAde%20de%20Lisboa%20Central%202018-2021.pdf
+        * ACES Lisboa Ocidental e Oeiras:
+          https://usflinhadealges.wordpress.com/wp-content/uploads/2020/05/plano-local-de-sac3bade-aces-lxoo.pdf
+        * ACES Lisboa Norte:
+          https://www.arslvt.min-saude.pt/wp-content/uploads/sites/5/2020/10/01_-_Lisboa_Norte_07_2013_vNET.pdf
+
+  Regiao de Saude do Alentejo
+    - Portaria n.o 275/2009:
+      https://files.diariodarepublica.pt/1s/2009/03/05400/0172701728.pdf
+    - Declaracao de Retificacao n.o 30/2009:
+      https://files.diariodarepublica.pt/1s/2009/05/09400/0300403005.pdf
+    - Portaria n.o 308/2012 (juncao do Alentejo Central I e II):
+      https://files.diariodarepublica.pt/1s/2012/10/19500/0559105593.pdf
+    - ULS do Baixo Alentejo e ULS do Norte Alentejano: Planos Locais de Saude:
+      http://www.arsalentejo.min-saude.pt/utentes/saudepublica/ObservatorioRegionalSaude/Documents/PeLS2019_A48_ULS%20Baixo%20Alentejo.pdf
+      http://www.arsalentejo.min-saude.pt/utentes/saudepublica/ObservatorioRegionalSaude/Documents/PeLS2019_A47_ULS%20Norte%20Alentejano.pdf
+
+  Regiao de Saude do Algarve
+    - Portaria n.o 272/2009:
+      https://files.diariodarepublica.pt/1s/2009/03/05400/0171001711.pdf
+
+  Regiao Autonoma da Madeira
+    - Portaria n.o 124/2016:
+      https://joram.madeira.gov.pt/joram/1serie/Ano%20de%202016/ISerie-057-2016-03-31.pdf
+
+  Regiao Autonoma dos Acores
+    - Decreto Legislativo Regional n.o 26/2022/A:
+      https://diariodarepublica.pt/dr/detalhe/decreto-legislativo-regional/26-2022-203457551
+
+
+3. CODIGOS DAS DIVISOES ADMINISTRATIVAS
+----------------------------------------
+
+  - Colunas freguesia_2013, municipio_2013 e distrito_2013: codigo da divisao
+    administrativa de 2013 (Lei n.o 11-A/2013, de 28 de janeiro, que criou
+    3091 freguesias).
+  - Colunas freguesia_2025, mn_2025 e dt_2025: codigo da divisao
+    administrativa de 2025 (Lei n.o 25-A/2025, de 13 de marco, que criou
+    3258 freguesias).
+  - Coluna uls_hierarquia_csp: nomenclatura da hierarquia das ULS conforme o
+    Bilhete de Identidade dos Cuidados de Saude Primarios (BI-CSP):
+    https://bicsp.min-saude.pt/pt/investigacao/Paginas/Matrizindicadorescsp_publico.aspx
+
+
+4. CONDICOES DE UTILIZACAO
+---------------------------
+
+  O produtor do ficheiro autoriza a sua partilha com outras entidades.
+  As fontes de base sao legislacao e publicacoes oficiais portuguesas.
