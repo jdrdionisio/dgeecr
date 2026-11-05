@@ -1,0 +1,37 @@
+Package: dgeecr
+Title: Acesso aos Dados de "Regiões em Números - Educação" (DGEEC)
+Version: 0.1.0
+Authors@R:
+    person("DGEEC", "utilizador", email = "utilizador@example.org", role = c("aut", "cre"))
+Description: Cliente R para extrair, em paralelo e com cache em disco, os
+    dados do portal "Regiões em Números - Educação" da Direção-Geral de
+    Estatísticas da Educação e Ciência (DGEEC). Cada página do portal é um
+    formulário cujo produto cartesiano de opções é percorrido via httr2
+    (req_perform_parallel), o HTML é convertido numa tabela longa
+    (1 linha = 1 observação) com rvest/dplyr/tidyr e os resultados podem ser
+    enriquecidos com divisões administrativas e de saúde (ULS, NUTS, região
+    2024) a partir de um ficheiro de ligação geográfica incluído no pacote.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1)
+Imports:
+    dplyr,
+    httr2 (>= 1.0.0),
+    nanoparquet,
+    purrr,
+    R6,
+    readr,
+    rlang,
+    rvest,
+    stringr,
+    tibble,
+    tidyr,
+    writexl,
+    xml2
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.1

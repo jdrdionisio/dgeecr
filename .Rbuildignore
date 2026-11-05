@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git$
+^\.gitignore$
+^output$
+^\.dgeec_cache$
+^README\.Rmd$
+^\.Rbuildignore$
