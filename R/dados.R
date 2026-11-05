@@ -11,8 +11,9 @@
 #' @return Um `tibble` longo.
 #' @export
 #' @examples
-#' \donttest{
-#' dgeec_dados("pre_escolar", regioes = "0")
+#' \dontrun{
+#' # requer acesso a Internet
+#' dgeec_dados("pre_escolar", regioes = "Portugal")
 #' }
 dgeec_dados <- function(pagina, ..., cliente = NULL) {
   cliente <- cliente %||% DgeecClient$new()

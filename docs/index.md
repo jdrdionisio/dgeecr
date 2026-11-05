@@ -30,11 +30,11 @@ dezenas de milhares de pedidos. O `dgeecr` trata disso:
 install.packages("dgeecr", repos = NULL, type = "source")
 ```
 
-Versão publicada (v0.1.1):
+Versão publicada (v0.1.2):
 
 ``` r
 install.packages(
-  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.1/dgeecr_0.1.1.tar.gz",
+  "https://github.com/jdrdionisio/dgeecr/releases/download/v0.1.2/dgeecr_0.1.2.tar.gz",
   repos = NULL, type = "source"
 )
 ```

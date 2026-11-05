@@ -19,7 +19,8 @@ Le a pagina do portal e devolve os valores possiveis de cada \verb{<select>},
 com o respetivo nivel hierarquico (no caso das regioes).
 }
 \examples{
-\donttest{
+\dontrun{
+# requer acesso a Internet
 dgeec_dimensoes("pre_escolar")
 }
 }

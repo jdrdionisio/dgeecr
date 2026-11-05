@@ -75,9 +75,10 @@
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' # requer acesso a Internet
 #' cli <- DgeecClient$new()
-#' d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
+#' d <- cli$dados("pre_escolar", regioes = c("Portugal", "Moncao"))
 #' }
 DgeecClient <- R6Class(
   "DgeecClient",

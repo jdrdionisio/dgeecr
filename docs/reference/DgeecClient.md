@@ -327,9 +327,9 @@ The objects of this class are cloneable with this method.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
+# requer acesso a Internet
 cli <- DgeecClient$new()
-d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
-#>   cache de dados: leitura do resultado interpretado.
-# }
+d <- cli$dados("pre_escolar", regioes = c("Portugal", "Moncao"))
+} # }
 ```

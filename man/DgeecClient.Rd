@@ -9,9 +9,10 @@ paralelizacao (httr2 na rede, \code{parallel} no parsing), o cache em disco
 (com resume) e a conversao em tabela longa.
 }
 \examples{
-\donttest{
+\dontrun{
+# requer acesso a Internet
 cli <- DgeecClient$new()
-d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
+d <- cli$dados("pre_escolar", regioes = c("Portugal", "Moncao"))
 }
 }
 \section{Public fields}{

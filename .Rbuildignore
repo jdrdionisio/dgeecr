@@ -11,3 +11,6 @@
 ^logo_preview\.png$
 ^\.github$
 ^pkgdown$
+^LICENSE\.md$
+^Rplots\.pdf$
+^cran-comments\.md$

@@ -13,9 +13,10 @@
 #'   3 = municipio).
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' # requer acesso a Internet
 #' dgeec_regioes()
-#' dgeec_regioes() |> subset(regiao_tipo == "Municipio")
+#' dgeec_regioes() |> subset(regiao_nivel == 3)   # so municipios
 #' }
 dgeec_regioes <- function(pagina = "pre_escolar", timeout = 45L) {
   tb <- .dgeec_meta(pagina, timeout = timeout)$dimensoes

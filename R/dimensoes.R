@@ -34,7 +34,8 @@
 #' @return Um `tibble` com `select`, `codigo`, `rotulo` e `nivel`.
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' # requer acesso a Internet
 #' dgeec_dimensoes("pre_escolar")
 #' }
 dgeec_dimensoes <- function(pagina, timeout = 45L) {

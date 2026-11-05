@@ -1,6 +1,6 @@
 Package: dgeecr
-Title: Acesso aos Dados de "Regiões em Números - Educação" (DGEEC)
-Version: 0.1.1
+Title: Acesso Aos Dados De "Regiões Em Números - Educação" (DGEEC)
+Version: 0.1.2
 Authors@R:
     person("João Dionísio", email = "joaodrdionisio@gmail.com", role = c("aut", "cre"))
 Description: Cliente R para extrair, em paralelo e com cache em disco, os

@@ -32,25 +32,9 @@ municipio).
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
+# requer acesso a Internet
 dgeec_regioes()
-#> # A tibble: 340 × 4
-#>    regiao_codigo regiao_nome                regiao_tipo regiao_nivel
-#>    <chr>         <chr>                      <chr>              <int>
-#>  1 1             Continente                 NUTS I                 0
-#>  2 0             Portugal                   Portugal               0
-#>  3 3             Região Autónoma da Madeira NUTS I                 0
-#>  4 2             Região Autónoma dos Açores NUTS I                 0
-#>  5 106           Alentejo                   NUTS II                1
-#>  6 107           Algarve                    NUTS II                1
-#>  7 102           Centro                     NUTS II                1
-#>  8 104           Grande Lisboa              NUTS II                1
-#>  9 101           Norte                      NUTS II                1
-#> 10 103           Oeste e Vale do Tejo       NUTS II                1
-#> # ℹ 330 more rows
-dgeec_regioes() |> subset(regiao_tipo == "Municipio")
-#> # A tibble: 0 × 4
-#> # ℹ 4 variables: regiao_codigo <chr>, regiao_nome <chr>, regiao_tipo <chr>,
-#> #   regiao_nivel <int>
-# }
+dgeec_regioes() |> subset(regiao_nivel == 3)   # so municipios
+} # }
 ```

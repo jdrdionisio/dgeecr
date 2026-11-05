@@ -22,8 +22,9 @@ Devolve a lista de regioes aceites em \verb{regioes=} por \link{DgeecClient}\ver
 com o codigo e o nome, para nao ser necessario conhecer os codigos.
 }
 \examples{
-\donttest{
+\dontrun{
+# requer acesso a Internet
 dgeec_regioes()
-dgeec_regioes() |> subset(regiao_tipo == "Municipio")
+dgeec_regioes() |> subset(regiao_nivel == 3)   # so municipios
 }
 }

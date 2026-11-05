@@ -21,7 +21,8 @@ Um \code{tibble} longo.
 Cria um \link{DgeecClient} e extrai os dados de uma pagina.
 }
 \examples{
-\donttest{
-dgeec_dados("pre_escolar", regioes = "0")
+\dontrun{
+# requer acesso a Internet
+dgeec_dados("pre_escolar", regioes = "Portugal")
 }
 }
