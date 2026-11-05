@@ -8,6 +8,5 @@
 ^\.Rbuildignore$
 ^_pkgdown\.yml$
 ^docs$
-^EE_image\.png$
 ^logo_preview\.png$
 ^\.github$
