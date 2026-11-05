@@ -8,3 +8,5 @@ inst/doc
 output/
 .dgeec_cache/
 logo_preview.png
+*~
+Rplots.pdf

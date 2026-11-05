@@ -309,8 +309,6 @@ The objects of this class are cloneable with this method.
 # \donttest{
 cli <- DgeecClient$new()
 d <- cli$dados("pre_escolar", regioes = c("0", "101011604"))
-#> [pre_escolar] 8 combinacoes | regioes: 2 | nucleos: 14
-#>   lote 1/1 (8 pedidos)
-#>   a interpretar respostas (paralelo)...
+#>   cache de dados: leitura do resultado interpretado.
 # }
 ```

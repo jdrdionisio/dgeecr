@@ -37,9 +37,7 @@ Um `tibble` longo.
 ``` r
 # \donttest{
 dgeec_dados("pre_escolar", regioes = "0")
-#> [pre_escolar] 4 combinacoes | regioes: 1 | nucleos: 14
-#>   cache completo; nada a descarregar.
-#>   a interpretar respostas (paralelo)...
+#>   cache de dados: leitura do resultado interpretado.
 #> # A tibble: 200 × 15
 #>    pagina      grupo     regiao_codigo natureza_codigo genero_codigo regiao_nome
 #>    <chr>       <chr>     <chr>         <chr>           <chr>         <chr>      
